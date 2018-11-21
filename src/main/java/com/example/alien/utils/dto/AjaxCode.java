@@ -8,4 +8,6 @@ package com.example.alien.utils.dto;
 public class AjaxCode {
     public static final Integer SUCCESS = 200;
     public static final String SUCCESS_MESSAFE="请求成功";
+
+    public static final Integer FAILURE=201;
 }

@@ -1,8 +1,7 @@
-package com.example.alien.utils.controller;
+package com.example.alien.utils.controller.login;
 
 import com.example.alien.utils.dto.AjaxCode;
 import com.example.alien.utils.dto.AjaxResult;
-import com.example.alien.utils.entity.SysUser;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.springframework.web.bind.annotation.PostMapping;
