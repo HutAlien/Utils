@@ -6,6 +6,8 @@ import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.nutz.dao.Dao;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * @Auther: FengYunJun
@@ -13,6 +15,8 @@ import org.apache.shiro.subject.PrincipalCollection;
  * @Description:
  */
 public class ShiroRealm extends AuthorizingRealm {
+    @Autowired
+    Dao dao;
 
     /**
      * 授权
