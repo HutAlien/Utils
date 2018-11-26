@@ -13,5 +13,7 @@ import java.util.List;
 public interface ISysUserService {
     List<SysUser> findAllUser();
 
-    SysUser findByName(String username);
+    SysUser findByName(SysUser sysUser);
+
+    SysUser updateUser(SysUser sysUser);
 }

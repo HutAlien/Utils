@@ -28,6 +28,7 @@ public class ShiroConfigure {
         return shiroRealm;
     }
 
+    //拦截链配置
     @Bean
     public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager){
         ShiroFilterFactoryBean factoryBean=new ShiroFilterFactoryBean();

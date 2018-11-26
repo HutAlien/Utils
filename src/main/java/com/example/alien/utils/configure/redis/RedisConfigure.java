@@ -18,13 +18,13 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  * @Auther: FengYunJun
  * @Date: 2018/11/22 10:50
  * @Description:
- */
+ *//*
 @Configuration
 @EnableCaching
 public class RedisConfigure {
 
     @Bean
-    public CacheManager cacheManager(RedisConnectionFactory factory) {  //springboot2.0配置方式
+    public CacheManager cacheManager(RedisConnectionFactory factory) {  //springboot2.X配置方式
         CacheManager cacheManager = RedisCacheManager.create(factory);
         return cacheManager;
     }
@@ -56,4 +56,4 @@ public class RedisConfigure {
         return stringRedisTemplate;
     }
 
-}
+}*/
