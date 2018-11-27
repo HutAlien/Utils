@@ -20,6 +20,15 @@ spring:
           min-idle: 0
         timeout: 0
 
+  mail:
+    host: smtp.163.com
+    username: alien795200@163.com
+    password: zxcvbnm123
+    default-encoding: UTF-8
+mail:
+  fromMail:
+    addr: alien795200@163.com
+
 nutz:
   json:
     auto-unicode: false

@@ -28,6 +28,7 @@ public class AjaxResult {
         this.data = data;
     }
 
+
     public AjaxResult(Integer code, String message, Object data, Integer total) {
         this.code = code;
         this.message = message;
