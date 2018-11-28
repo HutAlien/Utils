@@ -8,7 +8,7 @@ import com.example.alien.utils.dto.AjaxResult;
  * @Date: 2018/11/22 11:29
  * @Description:
  */
-public class ResultUtils {
+public class AjaxResultUtils {
     public static<T> AjaxResult get(T t){
         if (t!=null){
             return new AjaxResult(AjaxCode.SUCCESS,AjaxCode.SUCCESS_MESSAFE,t);

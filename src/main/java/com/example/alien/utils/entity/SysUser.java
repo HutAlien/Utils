@@ -1,6 +1,7 @@
 package com.example.alien.utils.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import org.nutz.dao.entity.annotation.Column;
 import org.nutz.dao.entity.annotation.Comment;
@@ -17,6 +18,7 @@ import java.io.Serializable;
 @Table("u_sys_user")
 @Data
 @AllArgsConstructor
+@Builder
 public class SysUser implements Serializable {
     @Name
     @Column

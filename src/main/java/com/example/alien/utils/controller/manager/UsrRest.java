@@ -3,9 +3,8 @@ package com.example.alien.utils.controller.manager;
 import com.example.alien.utils.dto.AjaxCode;
 import com.example.alien.utils.dto.AjaxResult;
 import com.example.alien.utils.entity.SysUser;
-import com.example.alien.utils.exception.CustomException;
 import com.example.alien.utils.service.sysuser.ISysUserService;
-import com.example.alien.utils.utils.ResultUtils;
+import com.example.alien.utils.utils.AjaxResultUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +21,7 @@ public class UsrRest {
 
     @GetMapping("/user/list")
     public AjaxResult findAll() {
-        return ResultUtils.get(sysUserService.findAllUser());
+        return AjaxResultUtils.get(sysUserService.findAllUser());
     }
 
     @GetMapping("/user")
