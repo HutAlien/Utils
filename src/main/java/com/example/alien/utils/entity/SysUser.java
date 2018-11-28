@@ -1,5 +1,6 @@
 package com.example.alien.utils.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.nutz.dao.entity.annotation.Column;
 import org.nutz.dao.entity.annotation.Comment;
@@ -15,6 +16,7 @@ import java.io.Serializable;
  */
 @Table("u_sys_user")
 @Data
+@AllArgsConstructor
 public class SysUser implements Serializable {
     @Name
     @Column
@@ -23,4 +25,7 @@ public class SysUser implements Serializable {
     @Column
     @Comment("密码")
     private String password;
+
+    public SysUser() {
+    }
 }
