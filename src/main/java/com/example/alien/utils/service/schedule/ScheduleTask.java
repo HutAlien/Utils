@@ -15,12 +15,12 @@ import java.util.Date;
 public class ScheduleTask {
     private int count = 0;
 
-    @Scheduled(cron = "*/6 * * * * ?") //每隔6秒执行一次
+   // @Scheduled(cron = "*/6 * * * * ?") //每隔6秒执行一次
     private void process() {
         System.out.println(count++);
     }
 
-    @Scheduled(fixedRate = 6000)
+   // @Scheduled(fixedRate = 6000)
     private void process1() {
         SimpleDateFormat sdf=new SimpleDateFormat("YYYY-MM-dd:HH:mm:ss");
         System.out.println("现在的时间:"+ sdf.format(new Date()));

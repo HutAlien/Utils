@@ -11,9 +11,9 @@ import java.util.List;
  * @Description:
  */
 public interface ISysUserService {
-    List<SysUser> findAllUser();
+    AjaxResult findAllUser();
 
-    SysUser findByName(SysUser sysUser);
+    AjaxResult findByName(String username);
 
-    SysUser updateUser(SysUser sysUser);
+    AjaxResult updateUser(SysUser sysUser);
 }

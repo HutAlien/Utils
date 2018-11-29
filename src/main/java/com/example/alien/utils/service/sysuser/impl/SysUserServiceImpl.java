@@ -1,8 +1,10 @@
 package com.example.alien.utils.service.sysuser.impl;
 
+import com.example.alien.utils.dto.AjaxResult;
 import com.example.alien.utils.entity.SysUser;
 import com.example.alien.utils.exception.CustomException;
 import com.example.alien.utils.service.sysuser.ISysUserService;
+import com.example.alien.utils.utils.AjaxResultUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.nutz.dao.Cnd;
 import org.nutz.dao.Dao;
@@ -31,37 +33,37 @@ public class SysUserServiceImpl implements ISysUserService {
 
     @Override
     @Cacheable(cacheNames = "userList")
-    public List<SysUser> findAllUser() {
+    public AjaxResult findAllUser() {
        /* boolean haskey=redisTemplate.hasKey("users");
         if (haskey){
             List<SysUser> list=(List<SysUser>) redisTemplate.opsForValue().get("users");
             return list;
         }*/
         List<SysUser> list = dao.query(SysUser.class, null);
-        return list;
+        return AjaxResultUtils.get(list);
     }
 
     @Override
     @Cacheable(cacheNames = "user")   //能根据请求参数的不同  对不同的结果进行缓存！默认用请求参数作为key
-    public SysUser findByName(SysUser sysUser) {
+    public AjaxResult findByName(String username) {
        /* boolean haskey=redisTemplate.hasKey("user");  //，每次有key，就从缓存中取值
         if (haskey){
             return (SysUser) redisTemplate.opsForValue().get("user");
         }*/
-        SysUser user=dao.fetch(SysUser.class, Cnd.where("username","=",sysUser.getUsername()));
+        SysUser user=dao.fetch(SysUser.class, Cnd.where("username","=",username));
         if (user==null){
             throw new CustomException("用户不存在");
         }
-        return user;
+        return AjaxResultUtils.get(user);
     }
 
     @Override
     @CachePut(key = "#result.username",value = "user")     //更新后 更新缓存
-    public SysUser updateUser(SysUser sysUser) {
+    public AjaxResult updateUser(SysUser sysUser) {
         int state = dao.updateIgnoreNull(sysUser);
         if (state>0){
             SysUser user=dao.fetch(SysUser.class,sysUser.getUsername());
-            return user;
+            return AjaxResultUtils.get(user);
         }
         throw new CustomException("更新异常");
     }

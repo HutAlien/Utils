@@ -19,13 +19,14 @@ public class RedisUtils {
     private RedisTemplate redisTemplate;   //可处理任何类型的键值对
 
     //@Autowired
-  //  private StringRedisTemplate stringRedisTemplate;   //只能对String类型的键值对处理
+    // private StringRedisTemplate stringRedisTemplate;   //只能对String类型的键值对处理
 
-    private static ValueOperations<String,String> ops;  //会报空指针，因为@Autowired最后才执行
+    private static ValueOperations<String, String> ops;  //会报空指针，因为@Autowired最后才执行
 
+    //在构造方法上使用@Autowired,表示在构建这个类的时候就注入这个参数!!!
     @Autowired
     public RedisUtils(StringRedisTemplate stringRedisTemplate) {     //表示在构造这个对象的时候注入
-        ops=stringRedisTemplate.opsForValue();
+        ops = stringRedisTemplate.opsForValue();
     }
 
     public void savaData(String key, SysUser user) {
@@ -33,16 +34,17 @@ public class RedisUtils {
         ops.set(key, user);
     }
 
-    public Object getData(String key){
-        ValueOperations<String,Object> ops=this.redisTemplate.opsForValue();
+    public Object getData(String key) {
+        ValueOperations<String, Object> ops = this.redisTemplate.opsForValue();
         return ops.get(key);
     }
 
-    public void setkey(String key,String value){
+    public void setkey(String key, String value) {
         //ValueOperations<String,String> ops=stringRedisTemplate.opsForValue();
-        ops.set(key,value);
+        ops.set(key, value);
     }
-    public String getkey(String key){
+
+    public String getkey(String key) {
         //ValueOperations<String,String> ops=stringRedisTemplate.opsForValue();
         return ops.get(key);
     }
