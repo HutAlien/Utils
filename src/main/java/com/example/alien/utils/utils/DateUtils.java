@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 public class DateUtils {
 
     public static final SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd:HH:mm:ss");
+    public static String[] week={""};
 
     /**
      * 获取当前系统时间(精确到毫秒)
