@@ -35,9 +35,14 @@ public class UsrRest {
         return new AjaxResult(AjaxCode.FAILURE,"请输入用户名");
     }
 
-    @PostMapping("/user/update")
+    @PutMapping("/user")
     @ApiOperation(value = "更新用户",notes = "更新用户信息")
     public AjaxResult updateUser(SysUser user) {
        return userService.updateUser(user);
+    }
+
+    @PostMapping("/user")
+    public AjaxResult addUser(SysUser user){
+        return userService.addUser(user);
     }
 }

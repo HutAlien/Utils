@@ -16,4 +16,6 @@ public interface ISysUserService {
     AjaxResult findByName(String username);
 
     AjaxResult updateUser(SysUser sysUser);
+
+    AjaxResult addUser(SysUser user);
 }

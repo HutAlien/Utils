@@ -1,5 +1,8 @@
 package com.example.alien.utils.utils;
 
+import java.util.Random;
+import java.util.UUID;
+
 /**
  * @Auther: FengYunJun
  * @Date: 2018/11/28 15:29
@@ -57,8 +60,12 @@ public class StringUtils {
         return true;
     }
 
+    public static String getUUID(){
+        return UUID.randomUUID().toString().replace("-","");
+    }
+
     public static void main(String[] args) {
-        System.out.println(StringUtils.isAllTranslate(1,"aa",""));
+        System.out.println(getUUID());
 
     }
 

@@ -2,6 +2,7 @@ package com.example.alien.utils.utils;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * @Auther: FengYunJun
@@ -49,7 +50,7 @@ public class DateUtils {
     }
 
     public static void main(String[] args) {
-        System.out.println(DateUtils.getCurrentTime());
-
+        //System.out.println(DateUtils.getCurrentTime());
+        System.out.println(new Date(new Date().getTime()+43200000));
     }
 }

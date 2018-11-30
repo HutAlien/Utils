@@ -1,6 +1,5 @@
 package com.example.alien.utils.configure.shiro;
 
-import com.example.alien.utils.dto.AjaxCode;
 import com.example.alien.utils.entity.SysUser;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -13,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 /**
  * @Auther: FengYunJun
  * @Date: 2018/11/21 10:09
- * @Description:
+ * @Description: shiro Realm
  */
 public class ShiroRealm extends AuthorizingRealm {
     @Autowired
@@ -42,6 +41,9 @@ public class ShiroRealm extends AuthorizingRealm {
         SysUser sysUser=dao.fetch(SysUser.class, Cnd.where("username","=",username));
         if (sysUser==null){
             throw new UnknownAccountException("用户不存在");
+        }
+        if (sysUser.getStatus()==0){
+            throw new LockedAccountException("账户已被锁定");
         }
         SimpleAuthenticationInfo simpleAuthenticationInfo=new SimpleAuthenticationInfo(sysUser,sysUser.getPassword(),getName());
         return simpleAuthenticationInfo;

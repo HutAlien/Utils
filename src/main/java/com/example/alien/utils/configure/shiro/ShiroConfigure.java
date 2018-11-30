@@ -6,6 +6,9 @@ import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @Auther: FengYunJun
  * @Date: 2018/11/21 10:08
@@ -33,8 +36,17 @@ public class ShiroConfigure {
     public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager){
         ShiroFilterFactoryBean factoryBean=new ShiroFilterFactoryBean();
         factoryBean.setSecurityManager(securityManager);
+        factoryBean.setLoginUrl("/api/login");
+        factoryBean.setSuccessUrl("/");
+        factoryBean.setUnauthorizedUrl("/403");   //未授权页面
 
+        Map<String,String> map=new HashMap<>();
+        //map.put("/login","anon");
+        map.put("/logout","logout");
+        map.put("/api/login","anon");
+        map.put("/**","authc");  //表示需要认证才可以访问
 
+        factoryBean.setFilterChainDefinitionMap(map);
         return factoryBean;
     }
 

@@ -1,5 +1,6 @@
 package com.example.alien.utils.service.sysuser.impl;
 
+import com.example.alien.utils.dto.AjaxCode;
 import com.example.alien.utils.dto.AjaxResult;
 import com.example.alien.utils.entity.SysUser;
 import com.example.alien.utils.exception.CustomException;
@@ -50,21 +51,29 @@ public class SysUserServiceImpl implements ISysUserService {
         if (haskey){
             return (SysUser) redisTemplate.opsForValue().get("user");
         }*/
-        SysUser user=dao.fetch(SysUser.class, Cnd.where("username","=",username));
-        if (user==null){
+        SysUser user = dao.fetch(SysUser.class, Cnd.where("username", "=", username));
+        if (user == null) {
             throw new CustomException("用户不存在");
         }
         return AjaxResultUtils.get(user);
     }
 
     @Override
-    @CachePut(key = "#result.username",value = "user")     //更新后 更新缓存
+    @CachePut(key = "#result.username", value = "user")     //更新后 更新缓存
     public AjaxResult updateUser(SysUser sysUser) {
         int state = dao.updateIgnoreNull(sysUser);
-        if (state>0){
-            SysUser user=dao.fetch(SysUser.class,sysUser.getUsername());
+        if (state > 0) {
+            SysUser user = dao.fetch(SysUser.class, sysUser.getUsername());
             return AjaxResultUtils.get(user);
         }
         throw new CustomException("更新异常");
+    }
+
+    @Override
+    public AjaxResult addUser(SysUser user) {
+        if (dao.insert(user) == null) {
+            throw new CustomException("添加异常");
+        }
+        return new AjaxResult(AjaxCode.SUCCESS, "添加成功");
     }
 }
