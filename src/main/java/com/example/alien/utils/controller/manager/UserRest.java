@@ -2,6 +2,7 @@ package com.example.alien.utils.controller.manager;
 
 import com.example.alien.utils.dto.AjaxCode;
 import com.example.alien.utils.dto.AjaxResult;
+import com.example.alien.utils.dto.annotation.Log;
 import com.example.alien.utils.entity.SysUser;
 import com.example.alien.utils.service.sysuser.ISysUserService;
 import com.example.alien.utils.utils.AjaxResultUtils;
@@ -13,11 +14,11 @@ import org.springframework.web.bind.annotation.*;
 /**
  * @Auther: FengYunJun
  * @Date: 2018/11/22 11:25
- * @Description:
+ * @Description: 用户API
  */
 @RestController
 @RequestMapping("/api")
-public class UsrRest {
+public class UserRest {
     @Autowired
     ISysUserService userService;
 
@@ -28,6 +29,7 @@ public class UsrRest {
     }
 
     @GetMapping("/user")
+    @Log(operationName = "查询用户")
     public AjaxResult findByUserName(String username){
         if (StringUtils.isAllTranslate(username)){
             return userService.findByName(username);

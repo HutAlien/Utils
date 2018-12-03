@@ -9,7 +9,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
  * @Auther: FengYunJun
  * @Date: 2018/11/29 12:28
  * @Description:
- */
+/* *//*
 @Configuration
 public class RedisConfigure {
     @Bean
@@ -18,4 +18,4 @@ public class RedisConfigure {
         stringRedisTemplate.setConnectionFactory(factory);
         return stringRedisTemplate;
     }
-}
+}*/

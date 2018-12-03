@@ -1,6 +1,5 @@
 package com.example.alien.utils.entity;
 
-import jdk.nashorn.internal.parser.Token;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,9 +19,14 @@ import java.util.Date;
 @AllArgsConstructor
 @Builder
 public class SysUser implements Serializable {
+    /* @Column
+     @Prev(els = @EL("uuid()"))  //可以是uuid 也可以是uuid(32)
+     private String id;
+     */
+    @Id
     @Column
-    @Prev(els = @EL("uuid()"))  //可以是uuid 也可以是uuid(32)
-    private String id;
+    private long id;
+
     @Name
     @Column
     @Comment("用户名")
@@ -32,14 +36,14 @@ public class SysUser implements Serializable {
     @Comment("密码")
     @NotBlank(message = "密码不能为空")
     private String password;
-    @Column
+    @Column("expire_date")
     @Comment("token过期时间")
     private Date expireDate;
     @Column
     @Comment("token")
     private String token;
     @Column
-    @Comment("账户状态")
+    @Comment("账户状态 0锁定 1可用")
     private Integer status;
 
     public SysUser() {
