@@ -33,7 +33,7 @@ public class SysUserServiceImpl implements ISysUserService {
     Dao dao;
 
     @Override
-    @Cacheable(cacheNames = "userList")
+  //  @Cacheable(cacheNames = "userList")
     public AjaxResult findAllUser() {
        /* boolean haskey=redisTemplate.hasKey("users");
         if (haskey){
