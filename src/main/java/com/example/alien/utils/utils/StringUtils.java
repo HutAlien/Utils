@@ -1,6 +1,9 @@
 package com.example.alien.utils.utils;
 
-import java.util.Random;
+import lombok.extern.slf4j.Slf4j;
+
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -8,6 +11,7 @@ import java.util.UUID;
  * @Date: 2018/11/28 15:29
  * @Description: 字符串工具类
  */
+@Slf4j
 public class StringUtils {
     /**
      * 参数是否全为空
@@ -65,8 +69,13 @@ public class StringUtils {
     }
 
     public static void main(String[] args) {
-        System.out.println(getUUID());
-
+        Set set=new HashSet();
+        set.add("a");
+        set.add("a");
+        for (Object s:set){
+            System.out.println(s);
+        }
+        //System.out.println(getUUID());
     }
 
 }
