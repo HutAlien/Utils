@@ -4,12 +4,14 @@ import com.example.alien.utils.entity.Employee;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.nutz.json.Json;
+import sun.print.SunMinMaxPage;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 import static java.util.Comparator.comparing;
+import static java.util.stream.Collectors.summingInt;
 
 /**
  * @Auther: FengYunJun
@@ -98,6 +100,7 @@ public class ListTest {
         int sum = list.stream().reduce(0, (a, b) -> a + b);
         log.info("sum={}", sum);
         Optional<Integer> max = list.stream().reduce(Integer::max);
+        int Sum=employees.stream().collect(summingInt(Employee::getAge));
     }
 
     @Test
