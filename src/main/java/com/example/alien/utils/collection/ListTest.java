@@ -86,16 +86,18 @@ public class ListTest {
         List<Integer> tempList = list.stream().filter(o -> o > 3).limit(3).collect(Collectors.toList());
         log.info("tempList={}", tempList);
         List<Integer> tempList1 = list.stream().filter(a -> a > 1).distinct().skip(2).collect(Collectors.toList());//skin(n) 跳过前N个数
-        log.info("tempList1={}",tempList1);
+        log.info("tempList1={}", tempList1);
 
         //流支持map()方法，他会接收一个函数作为参数    //flatmap()
         List<Employee> employees = new ArrayList<>(Arrays.asList(new Employee(1, "ton", 110, 10.1),
                 new Employee(2, "ton1", 12, 113.1), new Employee(3, "ton2", 1, 1.1)));
-        List<Integer> names=employees.stream().map(Employee::getName).map(String::length).collect(Collectors.toList());
-        log.info("names={}",names);
+        List<Integer> names = employees.stream().map(Employee::getName).map(String::length).collect(Collectors.toList());
+        log.info("names={}", names);
 
-
-
+        //规约
+        int sum = list.stream().reduce(0, (a, b) -> a + b);
+        log.info("sum={}", sum);
+        Optional<Integer> max = list.stream().reduce(Integer::max);
     }
 
     @Test
