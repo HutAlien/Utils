@@ -71,7 +71,7 @@ public class SysUserServiceImpl implements ISysUserService {
 
     @Override
     public AjaxResult addUser(SysUser user) {
-        user.setCreateTime(NewDateUtils.getCurrentDateTime());
+        //user.setCreateTime(NewDateUtils.getCurrentDateTime());
         if (dao.insert(user) == null) {
             throw new CustomException("添加异常");
         }

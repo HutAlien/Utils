@@ -46,10 +46,10 @@ public class LoginRest {
         } catch (AuthenticationException e) {  //认证失败
             return new AjaxResult(AjaxCode.FAILURE, "认证失败");
         }
-        ShiroUtils.getSubject().getSession().setTimeout(1231313); //设置Session过期时间，以毫秒为单位
+        ShiroUtils.getSubject().getSession().setTimeout(3000000); //设置Session过期时间，以毫秒为单位
         String accessToken = StringUtils.getUUID();
-        Date expireTime = new Date(new Date().getTime() + 1231313);  //设置token过期时间
-        SysUser user = ShiroUtils.getCurrentUser();
+        Date expireTime = new Date(new Date().getTime() + 1000000);  //设置token过期时间
+        SysUser user = ShiroUtils.getCurrentUser();//获取当前登录用户
         user.setExpireDate(expireTime);
         user.setToken(accessToken);
         dao.updateIgnoreNull(user);

@@ -34,11 +34,15 @@ public class ShiroUtils {
     }
 
     //获取当前用户
-    public static SysUser getCurrentUser(){
-        SysUser user=(SysUser) getSubject().getPrincipal();
-        if (user==null){
+    public static SysUser getCurrentUser() {
+        SysUser user = (SysUser) getSubject().getPrincipal();
+        if (user == null) {
             throw new CustomException("用户未登录");
         }
         return user;
+    }
+
+    public static String getCurrentRole() {
+        return getCurrentUser().getRole();
     }
 }

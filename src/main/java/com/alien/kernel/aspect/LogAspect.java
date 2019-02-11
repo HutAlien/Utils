@@ -27,7 +27,7 @@ public class LogAspect {
     public void LogPointCut() {
     }
 
-    @Pointcut("execution(public * com.alien.kernel.utils.controller.*.*(..))")
+    @Pointcut("execution(public * com.alien.kernel.controller.*.*(..))")
     public void otherPointCut() {
 
     }

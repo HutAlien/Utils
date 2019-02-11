@@ -37,15 +37,15 @@ public class ShiroRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
-        String username=(String) authenticationToken.getPrincipal();
-        SysUser sysUser=dao.fetch(SysUser.class, Cnd.where("username","=",username));
-        if (sysUser==null){
+        String username = (String) authenticationToken.getPrincipal();
+        SysUser sysUser = dao.fetch(SysUser.class, Cnd.where("username", "=", username));
+        if (sysUser == null) {
             throw new UnknownAccountException("用户不存在");
         }
-        if (sysUser.getStatus()==0){
+        if (sysUser.getStatus() == 0) {
             throw new LockedAccountException("账户已被锁定");
         }
-        SimpleAuthenticationInfo simpleAuthenticationInfo=new SimpleAuthenticationInfo(sysUser,sysUser.getPassword(),getName());
+        SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(sysUser, sysUser.getPassword(), getName());
         return simpleAuthenticationInfo;
     }
 }

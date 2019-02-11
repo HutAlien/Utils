@@ -1,12 +1,11 @@
 package com.alien.kernel.utils.java8;
 
 import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
 
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.Map;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 /**
  * @Auther: FengYunJun
@@ -160,11 +159,21 @@ public class NewDateUtils {
         return (getDateByTime(time).getDayOfYear() / 7) + 1;
     }
 
+    /**
+     * 将LocalDateTime转换为DATE
+     *
+     * @param
+     * @return
+     */
+    public static Date getDateByLocalDateTime(LocalDateTime localDateTime) {
+        return Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+    }
 
     public static void main(String[] args) {
-        System.out.println(getCurrentDate().isAfter(getDateByTime("2019-01-25")));
-        System.out.println(getCurrentDate().isBefore(getDateByTime("2019-01-25")));
-        System.out.println(getCurrentDate().equals(getDateByTime("2019-01-25")));
+        System.out.println(getCurrentDateTime().format(DateTimeFormatter.ofPattern("YYYY-MM-dd HH:mm:ss")));
+        System.out.println(getCurrentDateTime().toString());
+        System.out.println(Date.from(getCurrentDateTime().atZone(ZoneId.systemDefault()).toInstant()));
+        //
     }
 
 }

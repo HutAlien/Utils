@@ -1,6 +1,5 @@
 package com.alien.kernel.controller;
 
-import com.alien.kernel.entity.SysUser;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 
@@ -13,11 +12,5 @@ public class AbstractController {
     protected Subject getConcurrentSubject() {
         return SecurityUtils.getSubject();
     }
-    protected SysUser getSysUser(){
-        SysUser sysUser=(SysUser) getConcurrentSubject().getPrincipal();
-        if (sysUser==null){
 
-        }
-        return sysUser;
-    }
 }

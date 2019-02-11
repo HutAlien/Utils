@@ -1,6 +1,12 @@
 server:
   port: 8090
 spring:
+  mvc:
+    #出现错误时, 直接抛出异常
+    throw-exception-if-no-handler-found: true
+    resources:
+      #不为工程中的资源文件建立映射
+      add-mappings: false
   datasource:
       driver-class-name: org.postgresql.Driver
       url: jdbc:postgresql://127.0.0.1:5432/utils?useUnicode=true&characterEncoding=UTF-8&useSSL=false
@@ -48,9 +54,13 @@ nutz:
     mode: compact
   dao:
     runtime:
+      add-column: true
+      check-index: false
+      delete-column: false
+      foce-create: false
       create: true
-      migration: false
-      basepackage: com.example.alien.utils.entity
+      migration: true
+      basepackage: com.alien.kernel.entity
     sqlmanager:
       paths:
         - sqls

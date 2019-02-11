@@ -20,10 +20,6 @@ import java.util.Date;
 @AllArgsConstructor
 @Builder
 public class SysUser implements Serializable {
-    /* @Column
-     @Prev(els = @EL("uuid()"))  //可以是uuid 也可以是uuid(32)
-     private String id;
-     */
     @Id
     @Column
     private long id;
@@ -33,6 +29,7 @@ public class SysUser implements Serializable {
     @Comment("用户名")
     @NotBlank(message = "用户名不能为空")
     private String username;
+
     @Column
     @Comment("密码")
     @NotBlank(message = "密码不能为空")
@@ -41,14 +38,22 @@ public class SysUser implements Serializable {
     @Column("expire_date")
     @Comment("token过期时间")
     private Date expireDate;
+
     @Column
-    @Comment("token")
+    @Comment("访问token")
     private String token;
+
     @Column
     @Comment("账户状态 0锁定 1可用")
     private Integer status;
 
-    private LocalDateTime createTime;
+    @Column("create_time")
+    @Comment("创建时间")
+    private Date createTime;
+
+    @Column("role")
+    @Comment("角色")
+    private String role;
 
     public SysUser() {
     }
