@@ -71,6 +71,8 @@ public class LogAspect {
         String className = joinPoint.getTarget().getClass().getName();//获取目标代理对象类名称
         String methodName = methodSignature.getName();  //获取方法名称
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        String requestIp = request.getRemoteAddr();
+        String requestuser = request.getRemoteUser();
 
         SysLog sysLog = new SysLog();
         sysLog.setLogType("1");
