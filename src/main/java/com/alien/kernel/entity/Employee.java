@@ -9,7 +9,7 @@ import lombok.Data;
  * @Description:
  */
 @Data
-@AllArgsConstructor//
+@AllArgsConstructor
 public class Employee {
     private Integer id;
     private String name;

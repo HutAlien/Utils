@@ -12,5 +12,9 @@ import java.lang.annotation.*;
 @Documented
 public @interface Log {
 
+    //操作类型
+    String operationType() default "";
+
+    //操作名称
     String operationName() default "";
 }

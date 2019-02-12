@@ -22,7 +22,7 @@ import java.lang.reflect.Method;
 @Component
 public class PermsAspect {
 
-    @Pointcut("@annotation(com.alien.kernel.dto.annotation.Permits)")//拦截controller下的所有类
+    @Pointcut("@annotation(com.alien.kernel.dto.annotation.Permits)")
     public void permsPointCut() {
     }
 

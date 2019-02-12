@@ -45,7 +45,7 @@ public class SysUserServiceImpl implements ISysUserService {
     }
 
     @Override
-    @Cacheable(cacheNames = "user")   //能根据请求参数的不同  对不同的结果进行缓存！默认用请求参数作为key
+    //@Cacheable(cacheNames = "user")   //能根据请求参数的不同  对不同的结果进行缓存！默认用请求参数作为key
     public AjaxResult findByName(String username) {
        /* boolean haskey=redisTemplate.hasKey("user");  //，每次有key，就从缓存中取值
         if (haskey){

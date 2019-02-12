@@ -28,8 +28,8 @@ public class UserRest {
     ISysUserService userService;
 
     @GetMapping("/user/list")
-    @ApiOperation(value = "用户列表", notes = "获取全部用户")
     @Permits(roles = "1")
+    @Log(operationType = "get", operationName = "获取用户列表")
     public AjaxResult findAll() {
         return userService.findAllUser();
     }
