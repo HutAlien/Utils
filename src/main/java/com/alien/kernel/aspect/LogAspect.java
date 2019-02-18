@@ -4,9 +4,7 @@ import com.alien.kernel.dto.annotation.Log;
 import com.alien.kernel.entity.SysLog;
 import com.alien.kernel.utils.DateUtils;
 import com.alien.kernel.utils.ShiroUtils;
-import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.tomcat.util.http.fileupload.RequestContext;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
@@ -19,7 +17,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
 import java.util.Arrays;

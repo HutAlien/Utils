@@ -4,6 +4,7 @@ import com.alien.kernel.entity.Employee;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
+import org.nutz.dao.entity.annotation.Id;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -30,7 +31,6 @@ public class Test {
         map.put("B", 200);
         map.put("C", 500);
         for (Map.Entry<String, Object> entry : map.entrySet()) {
-
         }
         map.forEach((k, v) -> {
             System.out.println(k + "  " + v);
@@ -55,8 +55,6 @@ public class Test {
     }
 
     public static void main(String[] args) {
-        // Test.TestCollection();
-        //Test.TestThread();
         List<Employee> list = Lists.newArrayList();
         Employee employee = new Employee(1, "Tom", 12, 111.0);
         Employee employee1 = new Employee(1, "Jerry", 12, 111.0);
@@ -65,9 +63,10 @@ public class Test {
         list.add(employee1);
         list.add(employee2);
         Map<String, Integer> map = Maps.newHashMap();
-        for (Employee e : list) {
-            map.merge(e.getName(), e.getAge(), (a, b) -> a + b);
-        }
+        list.stream().forEach((e) -> {
+            map.merge(e.getName(), e.getAge(), (a, b) -> (a + b));
+        });
+        log.info("map={}", map);
     }
 
     @org.junit.jupiter.api.Test
@@ -110,10 +109,10 @@ public class Test {
             field.setAccessible(true);//设置允许访问私有属性值
             //
             Field[] fields1 = c.getFields();          //getDeclaredField 可以获取本类所有的字段，包括private的，但是不能获取继承来的字段。 (注： 这里只能获取到private的字段，但并不能访问该private字段的值,除非加上setAccessible(true))
-           // Field field1 = c.getField("name");
+            // Field field1 = c.getField("name");
             //将employee2对象的name属性值设置为Bob
-            field.set(employee2,"Bob");
-            log.info("employee2={}",employee2);
+            field.set(employee2, "Bob");
+            log.info("employee2={}", employee2);
 
         } catch (NoSuchMethodException e) {
             e.printStackTrace();

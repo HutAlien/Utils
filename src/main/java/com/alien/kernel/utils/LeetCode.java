@@ -1,5 +1,7 @@
 package com.alien.kernel.utils;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -8,6 +10,7 @@ import java.util.List;
  * @Date: 2019/1/29 10:18
  * @Description:
  */
+@Slf4j
 public class LeetCode {
     /**
      * 整数反转 溢出返回0
@@ -205,8 +208,11 @@ public class LeetCode {
     }
 
 
+
+
     public static void main(String[] args) {
         int[] target = merge(new int[]{1, 3, 5, 0, 0, 0, 0, 0}, 3, new int[]{2, 4, 6, 8}, 4);
         Arrays.stream(target).forEach((o) -> System.out.println(o));
+        //
     }
 }

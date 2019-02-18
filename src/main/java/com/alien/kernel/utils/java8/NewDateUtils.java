@@ -1,11 +1,11 @@
 package com.alien.kernel.utils.java8;
 
 import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.Date;
+import java.util.Map;
 
 /**
  * @Auther: FengYunJun
@@ -174,6 +174,7 @@ public class NewDateUtils {
         System.out.println(getCurrentDateTime().toString());
         System.out.println(Date.from(getCurrentDateTime().atZone(ZoneId.systemDefault()).toInstant()));
         //
+        System.out.println(getCurrentDateTime());
     }
 
 }
