@@ -170,11 +170,7 @@ public class NewDateUtils {
     }
 
     public static void main(String[] args) {
-        System.out.println(getCurrentDateTime().format(DateTimeFormatter.ofPattern("YYYY-MM-dd HH:mm:ss")));
-        System.out.println(getCurrentDateTime().toString());
-        System.out.println(Date.from(getCurrentDateTime().atZone(ZoneId.systemDefault()).toInstant()));
-        //
-        System.out.println(getCurrentDateTime());
+        System.out.println(getTimeByStrTime("09:20:15.425"));
     }
 
 }
