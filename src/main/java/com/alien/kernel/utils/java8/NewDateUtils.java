@@ -169,11 +169,31 @@ public class NewDateUtils {
         return Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
     }
 
+    /**
+     * @param date 转 localdate
+     * @return
+     */
+    public static LocalDate UDateToLocalDate(Date date) {
+        Instant instant = date.toInstant();
+        ZoneId zone = ZoneId.systemDefault();
+        LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, zone);
+        return localDateTime.toLocalDate();
+    }
+
+    /**
+     * @param date 转 localTime
+     * @return
+     */
+    public static LocalTime UDateToLocalTime(Date date) {
+        Instant instant = date.toInstant();
+        ZoneId zone = ZoneId.systemDefault();
+        LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, zone);
+        return localDateTime.toLocalTime();
+    }
+
+
     public static void main(String[] args) {
-        System.out.println(getCurrentDateTime().format(DateTimeFormatter.ofPattern("YYYY-MM-dd HH:mm:ss")));
-        System.out.println(getCurrentDateTime().toString());
-        System.out.println(Date.from(getCurrentDateTime().atZone(ZoneId.systemDefault()).toInstant()));
-        //
+        System.out.println(UDateToLocalDate(new Date()));
     }
 
 }
