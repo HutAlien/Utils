@@ -1,11 +1,11 @@
 package com.alien.kernel.utils.java8;
 
 import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
 
+import java.sql.Timestamp;
 import java.time.*;
-import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.Date;
+import java.util.Map;
 
 /**
  * @Auther: FengYunJun
@@ -191,9 +191,29 @@ public class NewDateUtils {
         return localDateTime.toLocalTime();
     }
 
+    /**
+     * date 转TimeStamp
+     *
+     * @param
+     * @return
+     */
+    public static Timestamp getTimeStampByDate(Date date) {
+        return new Timestamp(date.getTime());
+    }
+
+    /**
+     * timestamp 转 LocalDateTime
+     *
+     * @param
+     * @return
+     */
+    public static LocalDateTime getLocalDateTimeByTimestamp(Timestamp timestamp) {
+        return timestamp.toLocalDateTime();
+    }
+
 
     public static void main(String[] args) {
-        System.out.println(UDateToLocalDate(new Date()));
+        System.out.println(getTimeStampByDate(new Date()).toLocalDateTime());
     }
 
 }
