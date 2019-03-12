@@ -9,10 +9,10 @@ import com.alien.kernel.dto.AjaxResult;
  * @Description:
  */
 public class AjaxResultUtils {
-    public static<T> AjaxResult get(T t){
-        if (t!=null){
-            return new AjaxResult(AjaxCode.SUCCESS,AjaxCode.SUCCESS_MESSAFE,t);
+    public static <T> AjaxResult get(T t) {
+        if (t != null) {
+            return new AjaxResult(AjaxCode.SUCCESS, AjaxCode.SUCCESS_MESSAFE, t);
         }
-        return new AjaxResult(AjaxCode.FAILURE,AjaxCode.NO_DATA);
+        return new AjaxResult(AjaxCode.FAILURE, AjaxCode.NO_DATA);
     }
 }

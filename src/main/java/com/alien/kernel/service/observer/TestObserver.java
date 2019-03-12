@@ -27,7 +27,7 @@ public class TestObserver implements Subject {
     }
 
     public static void main(String[] args) {
-        TestObserver testObserver=new TestObserver();
+        TestObserver testObserver = new TestObserver();
         testObserver.ObserverRegister(new ObserverBlack());
         testObserver.ObserverRegister(new ObserverGreen());
         testObserver.ObserverRegister(new ObserverRed());

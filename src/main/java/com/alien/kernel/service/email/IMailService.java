@@ -13,5 +13,5 @@ public interface IMailService {
     void sendHtmlMail(String to, String subject, String content);
 
     //发送带附件邮件
-    void sendAttachmentsMail(String to,String subject,String content,String filePath);
+    void sendAttachmentsMail(String to, String subject, String content, String filePath);
 }

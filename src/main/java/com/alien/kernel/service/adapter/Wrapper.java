@@ -29,7 +29,7 @@ public class Wrapper implements ITargetTable {
     public void WrapperTest() {
         SourceClass sourceClass = new SourceClass();
         //ITargetTable targetTable = new Wrapper(sourceClass);
-       // targetTable.method();
+        // targetTable.method();
         //targetTable.method1();
     }
 

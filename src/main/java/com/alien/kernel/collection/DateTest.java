@@ -41,19 +41,19 @@ public class DateTest {
         System.out.println(localDateTime.getNano());
         System.out.println(DateUtils.getCurrentTime().getTime());
         LocalDateTime localDateTime1 = LocalDateTime.of(now, time);
-        String s=localDateTime1.format( DateTimeFormatter.ofPattern("YYYY-MM-dd HH:mm:ss"));
+        String s = localDateTime1.format(DateTimeFormatter.ofPattern("YYYY-MM-dd HH:mm:ss"));
         System.out.println(s);
         //
         ZonedDateTime zonedDateTime = ZonedDateTime.now();
         System.out.println(zonedDateTime);
         //
-        Instant instant=Instant.now();
+        Instant instant = Instant.now();
         System.out.println(instant);
         System.out.println(Date.from(instant));
         //时钟
-        Clock clock=Clock.systemUTC();
+        Clock clock = Clock.systemUTC();
         System.out.println(clock);
-        Clock clock1=Clock.tickMinutes(ZoneId.of("Asia/Shanghai"));
+        Clock clock1 = Clock.tickMinutes(ZoneId.of("Asia/Shanghai"));
         System.out.println(clock1);
 
     }

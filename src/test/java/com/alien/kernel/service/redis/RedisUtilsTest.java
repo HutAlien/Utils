@@ -20,16 +20,18 @@ public class RedisUtilsTest {
 
     @Autowired
     private RedisUtils redisUtils;
+
     @Test
-    public void redisTest(){
+    public void redisTest() {
         redisUtils.savaData("user", SysUser.builder().username("alien").password("123456").build());
-        Object user=redisUtils.getData("user");
-        log.info("user:{}",user);
+        Object user = redisUtils.getData("user");
+        log.info("user:{}", user);
         log.info("-----------------------------");
     }
+
     @Test
-    public void StringRedisTemplate(){
-        redisUtils.setkey("alien","123456");
+    public void StringRedisTemplate() {
+        redisUtils.setkey("alien", "123456");
         log.info(redisUtils.getkey("alien"));
     }
 

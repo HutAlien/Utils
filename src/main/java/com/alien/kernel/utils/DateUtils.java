@@ -12,7 +12,7 @@ import java.util.Date;
 public class DateUtils {
 
     public static final SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd:HH:mm:ss");
-    public static String[] week={""};
+    public static String[] week = {""};
 
     /**
      * 获取当前系统时间(精确到毫秒)
@@ -51,6 +51,6 @@ public class DateUtils {
 
     public static void main(String[] args) {
         //System.out.println(DateUtils.getCurrentTime());
-        System.out.println(new Date(new Date().getTime()+43200000));
+        System.out.println(new Date(new Date().getTime() + 43200000));
     }
 }

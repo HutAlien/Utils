@@ -14,12 +14,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class HelloReceive {
     @RabbitHandler
-    public void process(String hello){
-        System.out.println("Receive:"+hello);
+    public void process(String hello) {
+        System.out.println("Receive:" + hello);
     }
 
     @RabbitHandler
-    public void process(SysUser user){
-        System.out.println("receive user:"+user);
+    public void process(SysUser user) {
+        System.out.println("receive user:" + user);
     }
 }

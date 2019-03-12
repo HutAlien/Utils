@@ -110,10 +110,10 @@ public class Test {
             field.setAccessible(true);//设置允许访问私有属性值
             //
             Field[] fields1 = c.getFields();          //getDeclaredField 可以获取本类所有的字段，包括private的，但是不能获取继承来的字段。 (注： 这里只能获取到private的字段，但并不能访问该private字段的值,除非加上setAccessible(true))
-           // Field field1 = c.getField("name");
+            // Field field1 = c.getField("name");
             //将employee2对象的name属性值设置为Bob
-            field.set(employee2,"Bob");
-            log.info("employee2={}",employee2);
+            field.set(employee2, "Bob");
+            log.info("employee2={}", employee2);
 
         } catch (NoSuchMethodException e) {
             e.printStackTrace();

@@ -34,8 +34,10 @@ public class ListTest {
         list.add(date1);
         list.add(date2);
         //
-        List<Employee> employees = new ArrayList<>(Arrays.asList(new Employee(1, "ton", 110, 10.1),
-                new Employee(1, "ton", 12, 113.1), new Employee(1, "ton", 1, 1.1)));
+        List<Employee> employees = new ArrayList<>(Arrays.asList(
+                new Employee(1, "12ton", 110, 10.1),
+                new Employee(1, "2ton", 12, 113.1),
+                new Employee(1, "7ton", 1, 1.1)));
         employees.sort((o1, o2) -> o2.getAge().compareTo(o1.getAge())); //按年龄从大到小
         log.info("employees={}", employees);
         //以前的写法  从小到大
@@ -50,10 +52,7 @@ public class ListTest {
         employees.sort(comparing((a) -> a.getSalary()));//comparing函数接收一个Function来提取comparable的键值，并生成comparator对象
         employees.sort(comparing(Employee::getSalary));//方法引用
         log.info("employee={}", employees);
-        //
         employees.sort(comparing(Employee::getAge).reversed().thenComparing(Employee::getSalary));//当年龄一样时就按薪资排序
-
-
         //
         list.sort((o1, o2) -> o2.compareTo(o1));        //从大到小
         log.info("sort={}", Arrays.toString(list.toArray()));
@@ -65,6 +64,13 @@ public class ListTest {
             }
         });
         log.info("atomicReference={}", atomicReference);
+
+
+        employees.stream().sorted(comparing((o) -> {
+            return Integer.valueOf(o.getName().substring(0, o.getName().indexOf("t")));
+        }));
+        log.info("nameSort={}", employees);
+
     }
 
     @Test
@@ -105,9 +111,8 @@ public class ListTest {
         Optional<Integer> max = list.stream().reduce(Integer::max);
         int Sum = employees.stream().collect(summingInt(Employee::getAge));
         // 连接名字 字符串
-        String Names =employees.stream().map(Employee::getName).collect(joining(","));
-        log.info("names={}",Names);
-
+        String Names = employees.stream().map(Employee::getName).collect(joining(","));
+        log.info("names={}", Names);
 
 
     }

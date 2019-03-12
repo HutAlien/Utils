@@ -13,9 +13,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @Description:
  */
 @Configuration
-public class WebResourcesConfigure implements WebMvcConfigurer{
+public class WebResourcesConfigure implements WebMvcConfigurer {
     @Autowired
     Dao dao;
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new ApiInterceptor(dao)).addPathPatterns("/**").excludePathPatterns("/api/login");

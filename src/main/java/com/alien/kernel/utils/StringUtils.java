@@ -34,7 +34,7 @@ public class StringUtils {
      * @param param
      * @return
      */
-    public static<T> boolean isTranslate(T... param) {
+    public static <T> boolean isTranslate(T... param) {
         if (param.length <= 0) {
             return false;
         }
@@ -64,15 +64,15 @@ public class StringUtils {
         return true;
     }
 
-    public static String getUUID(){
-        return UUID.randomUUID().toString().replace("-","");
+    public static String getUUID() {
+        return UUID.randomUUID().toString().replace("-", "");
     }
 
     public static void main(String[] args) {
-        Set set=new HashSet();
+        Set set = new HashSet();
         set.add("a");
         set.add("a");
-        for (Object s:set){
+        for (Object s : set) {
             System.out.println(s);
         }
         //System.out.println(getUUID());

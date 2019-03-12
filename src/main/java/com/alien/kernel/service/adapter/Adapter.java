@@ -14,8 +14,8 @@ public class Adapter extends SourceClass implements ITargetTable {
     }
 
     @Test
-    public void AdapterTest(){
-        ITargetTable targetTable=new Adapter();
+    public void AdapterTest() {
+        ITargetTable targetTable = new Adapter();
         targetTable.method();
         targetTable.method1();
     }

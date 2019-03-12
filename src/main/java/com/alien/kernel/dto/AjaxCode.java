@@ -7,8 +7,8 @@ package com.alien.kernel.dto;
  */
 public class AjaxCode {
     public static final Integer SUCCESS = 200;
-    public static final String SUCCESS_MESSAFE="请求成功";
+    public static final String SUCCESS_MESSAFE = "请求成功";
 
-    public static final Integer FAILURE=201;
-    public static final String NO_DATA="暂无数据";
+    public static final Integer FAILURE = 201;
+    public static final String NO_DATA = "暂无数据";
 }

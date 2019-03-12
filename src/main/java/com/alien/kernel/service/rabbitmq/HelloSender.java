@@ -17,22 +17,24 @@ public class HelloSender {
     @Autowired
     private AmqpTemplate rabbitTemplate;
 
-    public void send(){
+    public void send() {
         log.info("发送消息开始");
-        this.rabbitTemplate.convertAndSend("hello","this is content");
+        this.rabbitTemplate.convertAndSend("hello", "this is content");
         log.info("发送消息成功");
     }
 
-    public void send(SysUser user){
-        System.out.println("user:"+user.toString());
-        this.rabbitTemplate.convertAndSend("hello",user);
+    public void send(SysUser user) {
+        System.out.println("user:" + user.toString());
+        this.rabbitTemplate.convertAndSend("hello", user);
         log.info("发送对象成功");
     }
-    public void send1(){      //将根据路由键匹配到两个队列
-        this.rabbitTemplate.convertAndSend("topicExchange","topic.msg","i am msg1");
+
+    public void send1() {      //将根据路由键匹配到两个队列
+        this.rabbitTemplate.convertAndSend("topicExchange", "topic.msg", "i am msg1");
         log.info("消息发送成功");
     }
-    public void send2(){      //只匹配到一个队列ic
-        this.rabbitTemplate.convertAndSend("topicExchange","topic.msgs","i am msg2");
+
+    public void send2() {      //只匹配到一个队列ic
+        this.rabbitTemplate.convertAndSend("topicExchange", "topic.msgs", "i am msg2");
     }
 }

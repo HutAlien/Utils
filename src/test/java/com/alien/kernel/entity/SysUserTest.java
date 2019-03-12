@@ -12,8 +12,8 @@ import org.junit.Test;
 public class SysUserTest {
 
     @Test
-    public void testSysUser(){
-        SysUser user=SysUser.builder().username("Tom").password("123456").build();
+    public void testSysUser() {
+        SysUser user = SysUser.builder().username("Tom").password("123456").build();
         log.info("User={}", user);
     }
 }

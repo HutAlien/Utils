@@ -41,44 +41,44 @@ public class EmailServiceImpl implements IMailService {
             mailSender.send(message);
             log.info("邮件发送成功");
         } catch (Exception e) {
-            log.error("邮件发送异常",e);
+            log.error("邮件发送异常", e);
         }
     }
 
     @Override
     public void sendHtmlMail(String to, String subject, String content) {
-        MimeMessage message=mailSender.createMimeMessage();
+        MimeMessage message = mailSender.createMimeMessage();
         try {
-            MimeMessageHelper helper=new MimeMessageHelper(message,true);//true表示需要创建一个multipart message
+            MimeMessageHelper helper = new MimeMessageHelper(message, true);//true表示需要创建一个multipart message
             helper.setFrom(from);
             helper.setTo(to);
             helper.setSubject(subject);
             helper.setText(content);
             mailSender.send(message);
             log.info("邮件发送成功");
-        }catch (Exception e){
-            log.error("邮件发送异常",e);
+        } catch (Exception e) {
+            log.error("邮件发送异常", e);
         }
     }
 
     @Override
-    public void sendAttachmentsMail(String to, String subject, String content,String filePath) {
-        MimeMessage message=mailSender.createMimeMessage();
+    public void sendAttachmentsMail(String to, String subject, String content, String filePath) {
+        MimeMessage message = mailSender.createMimeMessage();
         try {
-            MimeMessageHelper helper=new MimeMessageHelper(message,true);
+            MimeMessageHelper helper = new MimeMessageHelper(message, true);
             helper.setText(content);
             helper.setFrom(from);
             helper.setTo(to);
             helper.setSubject(subject);
             //获取附件
-            FileSystemResource file=new FileSystemResource(new File(filePath));
-            String fileName=filePath.substring(filePath.lastIndexOf(File.separator));
+            FileSystemResource file = new FileSystemResource(new File(filePath));
+            String fileName = filePath.substring(filePath.lastIndexOf(File.separator));
 
-            helper.addAttachment(fileName,file);
+            helper.addAttachment(fileName, file);
             mailSender.send(message);
             log.info("邮件发送成功");
         } catch (MessagingException e) {
-            log.error("邮件发送异常",e);
+            log.error("邮件发送异常", e);
         }
     }
 }

@@ -3,8 +3,8 @@ package com.alien.kernel.service.redis;
 /**
  * @Auther: FengYunJun
  * @Date: 2018/11/29 12:28
- * @Description:
-/* *//*
+ * @Description: /*
+ *//*
 @Configuration
 public class RedisConfigure {
     @Bean
