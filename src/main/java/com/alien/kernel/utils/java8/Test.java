@@ -30,7 +30,6 @@ public class Test {
         map.put("B", 200);
         map.put("C", 500);
         for (Map.Entry<String, Object> entry : map.entrySet()) {
-
         }
         map.forEach((k, v) -> {
             System.out.println(k + "  " + v);
@@ -55,8 +54,6 @@ public class Test {
     }
 
     public static void main(String[] args) {
-        // Test.TestCollection();
-        //Test.TestThread();
         List<Employee> list = Lists.newArrayList();
         Employee employee = new Employee(1, "Tom", 12, 111.0);
         Employee employee1 = new Employee(1, "Jerry", 12, 111.0);
@@ -65,9 +62,10 @@ public class Test {
         list.add(employee1);
         list.add(employee2);
         Map<String, Integer> map = Maps.newHashMap();
-        for (Employee e : list) {
-            map.merge(e.getName(), e.getAge(), (a, b) -> a + b);
-        }
+        list.stream().forEach((e) -> {
+            map.merge(e.getName(), e.getAge(), (a, b) -> (a + b));
+        });
+        log.info("map={}", map);
     }
 
     @org.junit.jupiter.api.Test
