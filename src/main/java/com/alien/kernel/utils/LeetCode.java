@@ -4,6 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.Arrays;
 
+import static java.util.stream.Collectors.joining;
+
 /**
  * @Auther: FengYunJun
  * @Date: 2019/1/29 10:18
@@ -206,12 +208,122 @@ public class LeetCode {
         }
     }
 
+    /**
+     * 二进制相加 （用数组存储两个数和，之后对每个数字进行判断，若大于1则对2取余数，数组的下一个数加一(进位)）
+     *
+     * @param
+     * @return
+     */
+    public static String addBinary(String a, String b) {
+        String[] arrA = a.split("");
+        String[] arrB = b.split("");
+        int[] num = new int[arrA.length > arrB.length ? arrA.length : arrB.length];
+        int[] num1 = new int[num.length + 1];
+        for (int i = arrA.length - 1, j = 0; i >= 0; i--, j++) {
+            num[j] = Integer.valueOf(arrA[i]);
+        }
+        for (int i = arrB.length - 1, j = 0; i >= 0; i--, j++) {
+            num[j] += Integer.valueOf(arrB[i]);
+        }
+        boolean flag = false;
+        for (int i = 0; i < num.length; i++) {
+            if (num[i] > 1) {
+                if (i == num.length - 1) {
+                    num[num.length - 1] %= 2;
+                    System.arraycopy(num, 0, num1, 0, num.length);
+                    num1[num1.length - 1] = 1;
+                    flag = true;
+                    break;
+                } else {
+                    num[i] %= 2;
+                    num[i + 1] += 1;
+                }
+            }
+        }
+        if (flag) {
+            return isPalindrome(Arrays.stream(num1).boxed().map((o) -> o.toString()).collect(joining("")));
+        }
+        return isPalindrome(Arrays.stream(num).boxed().map((o) -> o.toString()).collect(joining("")));
+    }
 
+    /**
+     * Excel列表序号 NO.171
+     *
+     * @param
+     * @return
+     */
+    public static int titleToNumber(String s) {
+        int number = 0;
+        for (int i = 0; i < s.length(); i++) {
+            int sum = s.charAt(i) - 'A' + 1;
+            number = number * 26 + sum;
+        }
+        return number;
+    }
+
+    /**
+     * Excel列表名称
+     *
+     * @param
+     * @return
+     */
+    public static String convertToTitle(int n) {
+        StringBuffer sb = new StringBuffer();
+        while (n != 0) {
+            n--;
+            sb.append((char) (n % 26 + 'A'));
+            n = n / 26;
+        }
+        return sb.reverse().toString();
+    }
+
+    /**
+     * 判断链表是否有环
+     * <p>
+     * 思路：1.可每次判断链表节点是否被访问过进而得知是否有环
+     * 2.定义两个指针(慢指针 每次步长为 1，快指针 每次步长为 2) 比较引用节点。
+     *
+     * @param
+     * @return
+     */
+    public boolean hasCycle(ListNode head) {
+        if (head == null || head.next == null) {
+            return false;
+        }
+        ListNode slow = head;
+        ListNode fast = head.next;
+        while (slow != null) {
+            if (slow == null || fast == null) {
+                return false;
+            }
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return true;
+    }
+
+    /**
+     *  删除链表中的元素
+     *
+     * @param
+     * @return
+     */
+    public ListNode removeElements(ListNode head, int val) {
+        ListNode node = new ListNode(-1);
+        node.next = head;
+        ListNode header = node;
+        while (header.next != null) {
+            if (header.next.val == val) {
+                header = header.next.next;
+            } else {
+                header = header.next;
+            }
+        }
+        return header.next;
+    }
 
 
     public static void main(String[] args) {
-        int[] target = merge(new int[]{1, 3, 5, 0, 0, 0, 0, 0}, 3, new int[]{2, 4, 6, 8}, 4);
-        Arrays.stream(target).forEach((o) -> System.out.println(o));
-        //
+
     }
 }
