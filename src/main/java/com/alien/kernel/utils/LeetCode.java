@@ -2,9 +2,7 @@ package com.alien.kernel.utils;
 
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.Arrays;
-
-import static java.util.stream.Collectors.joining;
+import java.util.*;
 
 /**
  * @Auther: FengYunJun
@@ -56,7 +54,6 @@ public class LeetCode {
      * @param
      * @return
      */
-
     public static String longestCommonPrefix(String[] strs) {
         if (strs.length == 0) {
             return "";
@@ -212,38 +209,24 @@ public class LeetCode {
      * 二进制相加 （用数组存储两个数和，之后对每个数字进行判断，若大于1则对2取余数，数组的下一个数加一(进位)）
      *
      * @param
-     * @return
+     * @return 二进制数
      */
     public static String addBinary(String a, String b) {
-        String[] arrA = a.split("");
-        String[] arrB = b.split("");
-        int[] num = new int[arrA.length > arrB.length ? arrA.length : arrB.length];
-        int[] num1 = new int[num.length + 1];
-        for (int i = arrA.length - 1, j = 0; i >= 0; i--, j++) {
-            num[j] = Integer.valueOf(arrA[i]);
+        String[] numA = a.split("");
+        String[] numB = b.split("");
+        int[] nA = new int[numA.length];
+        int[] nB = new int[numB.length];
+        for (int i = 0; i < numA.length; i++) {
+            nA[i] = Integer.valueOf(numA[i]);
         }
-        for (int i = arrB.length - 1, j = 0; i >= 0; i--, j++) {
-            num[j] += Integer.valueOf(arrB[i]);
+        for (int i = 0; i < numB.length; i++) {
+            nB[i] = Integer.valueOf(numB[i]);
         }
-        boolean flag = false;
-        for (int i = 0; i < num.length; i++) {
-            if (num[i] > 1) {
-                if (i == num.length - 1) {
-                    num[num.length - 1] %= 2;
-                    System.arraycopy(num, 0, num1, 0, num.length);
-                    num1[num1.length - 1] = 1;
-                    flag = true;
-                    break;
-                } else {
-                    num[i] %= 2;
-                    num[i + 1] += 1;
-                }
-            }
+        int[] nC = new int[(numA.length > numB.length ? numA.length : numB.length) + 1];
+        for (int i = 0; i < nC.length; i++) {
+            nC[i] = nA[i] + nB[i];
         }
-        if (flag) {
-            return isPalindrome(Arrays.stream(num1).boxed().map((o) -> o.toString()).collect(joining("")));
-        }
-        return isPalindrome(Arrays.stream(num).boxed().map((o) -> o.toString()).collect(joining("")));
+        return null;
     }
 
     /**
@@ -292,8 +275,8 @@ public class LeetCode {
         }
         ListNode slow = head;
         ListNode fast = head.next;
-        while (slow != null) {
-            if (slow == null || fast == null) {
+        while (slow != fast) {
+            if (fast == null || fast.next == null) {
                 return false;
             }
             slow = slow.next;
@@ -303,7 +286,7 @@ public class LeetCode {
     }
 
     /**
-     *  删除链表中的元素
+     * 删除链表中的元素
      *
      * @param
      * @return
@@ -314,7 +297,7 @@ public class LeetCode {
         ListNode header = node;
         while (header.next != null) {
             if (header.next.val == val) {
-                header = header.next.next;
+                header.next = header.next.next;
             } else {
                 header = header.next;
             }
@@ -322,8 +305,73 @@ public class LeetCode {
         return header.next;
     }
 
+    /**
+     * 链表的中间结点
+     * <p>
+     * 思路：1 将链表存入数组，通过返回数组的size/2 获取中间结点
+     * 2 定义两个指针(慢指针 每次步长为 1，快指针 每次步长为 2) 当快指针到达链表尾部时候，慢指针刚好到中间
+     *
+     * @param
+     * @return
+     */
+    public ListNode middleNode(ListNode head) {
+        ListNode slow = head;
+        ListNode fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+
+    /**
+     * 二叉树层次遍历
+     *
+     * @param
+     * @return
+     */
+    public List<List<Integer>> levelOrderBottom(TreeNode root) {
+        return null;
+    }
+
+    /**
+     * 快乐数 No.202
+     *
+     * @param
+     * @return
+     */
+    public static boolean isHappy(int n) {
+        Set<Integer> set = new HashSet<>();
+        while (true) {
+            int sum = 0;
+            while (n != 0) {
+                sum += Math.pow(n % 10, 2);
+                n = n / 10;
+            }
+            if (sum == 1) {
+                return true;
+            } else if (set.contains(sum)) {
+                return false;
+            } else {
+                set.add(sum);
+                n = sum;
+            }
+        }
+    }
+
+    /**
+     *  队列常用操作:Queue接口扩展在Collection接口上，使用时应尽量避免使用Collection的add()和remove()方法
+     *  使用offer()方法加入元素 poll()方法来获取并移除元素 它们的优点是可以通过返回值来判断成功于否，而add和remove方法在失败的时候会抛出异常，
+     *  如果要访问而不移除第一个元素：使用element()或peek()方法
+     *
+     * @param
+     * @return
+     */
+
 
     public static void main(String[] args) {
+        System.out.println(isHappy(19));
+        Stack stack=new Stack();
 
     }
 }

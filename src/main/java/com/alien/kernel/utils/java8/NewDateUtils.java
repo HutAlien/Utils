@@ -4,6 +4,7 @@ import com.google.common.collect.Maps;
 
 import java.sql.Timestamp;
 import java.time.*;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
 
@@ -213,7 +214,10 @@ public class NewDateUtils {
 
 
     public static void main(String[] args) {
-        System.out.println(getTimeStampByDate(new Date()).toLocalDateTime());
+        Calendar calendar=Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_MONTH,3);
+        calendar.add(Calendar.YEAR,1);
+        System.out.println(new Timestamp(calendar.getTime().getTime()));
     }
 
 }
