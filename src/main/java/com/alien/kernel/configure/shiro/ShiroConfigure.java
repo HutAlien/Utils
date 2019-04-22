@@ -51,7 +51,7 @@ public class ShiroConfigure {
         map.put("/logout", "logout");
         map.put("/api/login", "anon");
         //map.put("/**","authc");  //表示需要认证才可以访问   这里 authc是默认拦截器  是表单拦截器FormAuthenticationFilter的一个实例
-        map.put("/**", "apiFilter");
+        map.put("/**", "authc");
 
         factoryBean.setFilterChainDefinitionMap(map);
         return factoryBean;

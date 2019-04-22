@@ -3,6 +3,7 @@ package com.alien.kernel.utils;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @Auther: FengYunJun
@@ -77,7 +78,7 @@ public class LeetCode {
     }
 
     /**
-     * 合并连个有序链表
+     * 合并两个有序链表
      *
      * @param
      * @return
@@ -112,7 +113,6 @@ public class LeetCode {
      * @param
      * @return
      */
-
     public static int[] plusOne(int[] digits) {
         int[] a = new int[digits.length + 1];
         for (int i = digits.length - 1; i >= 0; i--) {
@@ -170,7 +170,7 @@ public class LeetCode {
         return nums1;
     }
 
-    class TreeNode {
+    static class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
@@ -194,6 +194,38 @@ public class LeetCode {
         return 0;
     }
 
+    /**
+     * N叉树的最大深度
+     *
+     * @param
+     * @return
+     */
+    public int maxDepth1(Node root) {
+        if (root == null) {
+            return 0;
+        }
+        int depth = 0;
+        for (int i = 0; i < root.children.size(); i++) {
+            depth = Math.max(depth, maxDepth1(root.children.get(i)));
+        }
+        return depth + 1;
+    }
+
+    //多叉树
+    class Node {
+        public int val;
+        public List<Node> children;
+
+        public Node() {
+        }
+
+        public Node(int val, List<Node> children) {
+            this.val = val;
+            this.children = children;
+        }
+    }
+
+    //相同的树
     public boolean isSameTree(TreeNode p, TreeNode q) {
         if (p == null && q == null) {
             return true;
@@ -212,21 +244,41 @@ public class LeetCode {
      * @return 二进制数
      */
     public static String addBinary(String a, String b) {
-        String[] numA = a.split("");
-        String[] numB = b.split("");
-        int[] nA = new int[numA.length];
-        int[] nB = new int[numB.length];
-        for (int i = 0; i < numA.length; i++) {
-            nA[i] = Integer.valueOf(numA[i]);
+        String[] arrA = a.split("");
+        String[] arrB = b.split("");
+        int[] num = new int[arrA.length > arrB.length ? arrA.length : arrB.length];
+        int num1[] = new int[num.length + 1];
+        for (int i = arrA.length - 1, j = 0; i >= 0; i--, j++) {
+            num[j] = Integer.valueOf(arrA[i]);
         }
-        for (int i = 0; i < numB.length; i++) {
-            nB[i] = Integer.valueOf(numB[i]);
+        for (int i = arrB.length - 1, j = 0; i >= 0; i--, j++) { //0101 1101  1202
+            num[j] += Integer.valueOf(arrB[i]);
         }
-        int[] nC = new int[(numA.length > numB.length ? numA.length : numB.length) + 1];
-        for (int i = 0; i < nC.length; i++) {
-            nC[i] = nA[i] + nB[i];
+        boolean flag = false;
+        for (int i = 0; i < num.length; i++) {
+            if (num[i] > 1) {
+                if (i == num.length - 1) {
+                    num[num.length - 1] %= 2;
+                    System.arraycopy(num, 0, num1, 0, num.length);
+                    num1[num1.length - 1] = 1;
+                    flag = true;
+                    break;
+                }
+                num[i] %= 2;
+                num[i + 1] += 1;
+            }
         }
-        return null;
+        String s = "";
+        if (flag) {
+            for (int i = num1.length - 1; i >= 0; i--) {
+                s += String.valueOf(num1[i]);
+            }
+        } else {
+            for (int i = num.length - 1; i >= 0; i--) {
+                s += String.valueOf(num[i]);
+            }
+        }
+        return s;
     }
 
     /**
@@ -360,18 +412,141 @@ public class LeetCode {
     }
 
     /**
-     *  队列常用操作:Queue接口扩展在Collection接口上，使用时应尽量避免使用Collection的add()和remove()方法
-     *  使用offer()方法加入元素 poll()方法来获取并移除元素 它们的优点是可以通过返回值来判断成功于否，而add和remove方法在失败的时候会抛出异常，
-     *  如果要访问而不移除第一个元素：使用element()或peek()方法
+     * 队列常用操作:Queue接口扩展在Collection接口上，使用时应尽量避免使用Collection的add()和remove()方法
+     * 使用offer()方法加入元素 poll()方法来获取并移除元素 它们的优点是可以通过返回值来判断成功于否，而add和remove方法在失败的时候会抛出异常，
+     * 如果要访问而不移除第一个元素：使用element()或peek()方法
+     *
+     * @param
+     * @return //todo
+     */
+
+    /**
+     * 原地反转字符
      *
      * @param
      * @return
      */
+    public void reverseString(char[] s) {
+        int i = 0, j = s.length - 1;
+        while (i < j) {
+            char temp = s[i];
+            s[i] = s[j];
+            s[j] = temp;
+            i++;
+            j--;
+        }
+
+    }
+
+    /**
+     * 移动0 No.233 在原数组上操作
+     *
+     * @param
+     * @return
+     */
+    public void moveZeroes(int[] nums) {
+        int j = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != 0) {
+                nums[j++] = nums[i];
+            }
+        }
+        while (j < nums.length) {
+            nums[j++] = 0;
+        }
+    }
+
+    /**
+     * 两数组交集
+     *
+     * @param
+     * @return
+     */
+    public int[] intersection(int[] nums1, int[] nums2) {
+        List<Integer> list = Arrays.stream(nums1).boxed().collect(Collectors.toList());
+        List<Integer> list1 = new ArrayList<>();
+        for (int j : nums2) {
+            if (list.contains(j)) {
+                list.remove(Integer.valueOf(j));
+                list1.add(j);
+            }
+        }
+        int[] target = new int[list1.size()];
+        int j = 0;
+        for (Integer i : list1) {
+            target[j++] = i;
+        }
+        return target;
+    }
+
+    /**
+     * 翻转二叉树
+     *
+     * @param
+     * @return
+     */
+    public TreeNode invertTree(TreeNode root) {
+        if (root == null) return null;
+        if (root.left == null && root.right == null) return root;
+        TreeNode tmp = invertTree(root.left);
+        root.left = invertTree(root.right);
+        root.right = tmp;
+        return root;
+    }
+
+    /**
+     * 翻转二叉树
+     *
+     * @param
+     * @return
+     */
+    public static TreeNode invertTree1(TreeNode root) {
+        if (root == null) {
+            return null;
+        }
+        TreeNode left = root.left;
+        root.left = root.right;
+        root.right = left;
+        invertTree1(root.left);
+        invertTree1(root.right);
+        return root;
+    }
+
+    /**
+     * 二叉搜索树转换为累加树
+     *
+     * @param
+     * @return
+     */
+    public static int preNum = 0;
+
+    public static TreeNode convertBST(TreeNode root) { //递归找到最右结点
+        unPreOrder(root);
+        return root;
+    }
+
+    public static void unPreOrder(TreeNode root) {
+        if (root == null)
+            return;
+        unPreOrder(root.right);
+        root.val += preNum;
+        preNum = root.val;
+        unPreOrder(root.left);
+    }
 
 
     public static void main(String[] args) {
-        System.out.println(isHappy(19));
-        Stack stack=new Stack();
+        ClassLoader classLoader = LeetCode.class.getClassLoader();//获取leetcode的类加载器
+        System.out.println(classLoader);
+        ClassLoader classLoader1 = classLoader.getParent();
+        System.out.println(classLoader1);
+        //
+        TreeNode treeNode=new TreeNode(1);
+        TreeNode treeNode1=new TreeNode(2);
+        TreeNode treeNode2=new TreeNode(3);
+        treeNode1.left=treeNode;
+        treeNode1.right=treeNode2;
+        TreeNode root=convertBST(treeNode1);
 
     }
 }
