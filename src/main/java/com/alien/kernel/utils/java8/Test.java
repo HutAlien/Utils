@@ -54,7 +54,7 @@ public class Test {
     }
 
     public static void main(String[] args) {
-        List<Employee> list = Lists.newArrayList();
+        /*List<Employee> list = Lists.newArrayList();
         Employee employee = new Employee(1, "Tom", 12, 111.0);
         Employee employee1 = new Employee(1, "Jerry", 12, 111.0);
         Employee employee2 = new Employee(1, "Tom", 12, 111.0);
@@ -65,7 +65,8 @@ public class Test {
         list.stream().forEach((e) -> {
             map.merge(e.getName(), e.getAge(), (a, b) -> (a + b));
         });
-        log.info("map={}", map);
+        log.info("map={}", map);*/
+        TestThread();
     }
 
     @org.junit.jupiter.api.Test
