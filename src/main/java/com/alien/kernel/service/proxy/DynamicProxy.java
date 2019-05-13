@@ -17,7 +17,7 @@ public class DynamicProxy implements InvocationHandler {
     }
 
     @Override
-    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable { //add()
         MonitorSession.begin(method.getName());
         Object obj=method.invoke(target,args);
         MonitorSession.end();
@@ -25,10 +25,6 @@ public class DynamicProxy implements InvocationHandler {
     }
     @SuppressWarnings("unchecked")
     public <T> T getProxy() {
-        return (T) Proxy.newProxyInstance(
-                target.getClass().getClassLoader(),
-                target.getClass().getInterfaces(),
-                this
-        );
+        return (T) Proxy.newProxyInstance(target.getClass().getClassLoader(), target.getClass().getInterfaces(), this);
     }
 }
