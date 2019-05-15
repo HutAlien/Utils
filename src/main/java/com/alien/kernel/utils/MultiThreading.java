@@ -19,6 +19,7 @@ public class MultiThreading implements Runnable {
     }
 
     public static void main(String[] args) {
+        System.out.println(Runtime.getRuntime().availableProcessors());
         class MyRunnable implements Runnable {
             @Override
             public void run() {
@@ -52,6 +53,7 @@ public class MultiThreading implements Runnable {
      * newScheduleThreadPool: 创建一个定长线程池，支持定时及周期性执行任务
      */
     final ExecutorService executorService = Executors.newSingleThreadExecutor();
+    ExecutorService cache=Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 
     //
     LinkedBlockingQueue blockingQueue = new LinkedBlockingQueue();
