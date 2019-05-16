@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * @Auther: FengYunJun
  * @Date: 2019/1/23 15:07
- * @Description:
+ * @Description: 观察者模式
  */
 public class TestObserver implements Subject {
 
