@@ -40,6 +40,7 @@ public class ListTest {
                 new Employee(1, "7ton", 1, 1.1)));
         employees.sort((o1, o2) -> o2.getAge().compareTo(o1.getAge())); //按年龄从大到小
         log.info("employees={}", employees);
+
         //以前的写法  从小到大
         employees.sort(new Comparator<Employee>() {
             @Override
@@ -48,10 +49,12 @@ public class ListTest {
             }
         });
         log.info("employee1={}", employees);
+
         //也可以这样写
         employees.sort(comparing((a) -> a.getSalary()));//comparing函数接收一个Function来提取comparable的键值，并生成comparator对象
         employees.sort(comparing(Employee::getSalary));//方法引用
         log.info("employee={}", employees);
+
         employees.sort(comparing(Employee::getAge).reversed().thenComparing(Employee::getSalary));//当年龄一样时就按薪资排序
         //
         list.sort((o1, o2) -> o2.compareTo(o1));        //从大到小
@@ -77,7 +80,7 @@ public class ListTest {
     public void computeListTest() {
         List<Integer> list = Arrays.asList(1, 2, 3, 3, 1, 6, 7, 8, 33, 12);
         IntSummaryStatistics stati = list.stream().mapToInt((x) -> x).summaryStatistics();
-        IntSummaryStatistics statistics = list.stream().collect(summarizingInt((x) -> x));     //使用summarizingInt 工厂方法来返回收集器
+        IntSummaryStatistics statistics = list.stream().collect(summarizingInt((x) -> x));//使用summarizingInt 工厂方法来返回收集器
         log.info("list Max={}", statistics.getMax());
         log.info("list min={}", statistics.getMin());
         log.info("list avg={}", statistics.getAverage());
@@ -91,15 +94,16 @@ public class ListTest {
     @Test
     public void ListDel() {
         List<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 2, 3));
-        //filter()
         List<Integer> tempList = list.stream().filter(o -> o > 3).limit(3).collect(Collectors.toList());
         log.info("tempList={}", tempList);
+
         List<Integer> tempList1 = list.stream().filter(a -> a > 1).distinct().skip(2).collect(Collectors.toList());//skin(n) 跳过前N个数
         log.info("tempList1={}", tempList1);
+
         int s = list.stream().reduce(0, Integer::sum);  //求和(暗含装箱成本)
         log.info("sum={}", s);
 
-        //流支持map()方法，他会接收一个函数作为参数    //flatmap()
+        //流支持map()方法，他会接收一个函数作为参数
         List<Employee> employees = new ArrayList<>(Arrays.asList(new Employee(1, "ton", 110, 10.1),
                 new Employee(2, "ton1", 12, 113.1), new Employee(3, "ton2", 1, 1.1)));
         List<Integer> names = employees.stream().map(Employee::getName).map(String::length).collect(Collectors.toList());
@@ -108,12 +112,22 @@ public class ListTest {
         //规约
         int sum = list.stream().reduce(0, (a, b) -> a + b);
         log.info("sum={}", sum);
+
         Optional<Integer> max = list.stream().reduce(Integer::max);
-        int Sum = employees.stream().collect(summingInt(Employee::getAge));
+        int sum1 = employees.stream().collect(summingInt(Employee::getAge));
+
         // 连接名字 字符串
         String Names = employees.stream().map(Employee::getName).collect(joining(","));
         log.info("names={}", Names);
 
+
+        employees.forEach(employee -> {
+
+        });
+
+        employees.forEach((o)->{
+
+        });
 
     }
 

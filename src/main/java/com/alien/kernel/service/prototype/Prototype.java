@@ -60,10 +60,15 @@ public class Prototype implements Cloneable, Serializable {
 
     }
 
-    public static void main(String[] args) {
-        Prototype prototype = Prototype.builder().name("prototype").employee(new Employee()).build();
-        log.info("prototype={}",prototype);
-        System.out.println(prototype.toString());
+    public static void main(String[] args) throws CloneNotSupportedException, IOException, ClassNotFoundException {
+        Prototype prototype = new Prototype();
+        prototype.setName("Hello");
+        prototype.setEmployee(new Employee());
+        System.out.println(prototype);
+        Prototype p=(Prototype) prototype.clone();
+        System.out.println(p.equals(prototype));
+        //
+
     }
 
 }
