@@ -1,11 +1,11 @@
 package com.alien.kernel.service.io;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import org.junit.jupiter.api.Test;
+
+import java.io.*;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Properties;
 
 /**
  * @Auther: FengYunJun
@@ -24,6 +24,42 @@ public class TestIo {
                 e.printStackTrace();
             }
         }
+    }
+
+    /**
+     * 读取properties文件
+     *
+     *@param
+     *@return
+     */
+    @Test
+    public void PropertiesTest(){
+        Properties properties=new Properties();
+        //1 使用class变量的getResourceAsStream()方法
+      /*  InputStream is=getClass().getClassLoader().getResourceAsStream("location.properties");
+        try {
+            properties.load(is);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            if (is!=null){
+                try {
+                    is.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }*/
+        //2
+        try {
+            InputStream in =new BufferedInputStream(new FileInputStream("classpath:location.properties"));
+            properties.load(in);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println(properties.get("packageScan"));
     }
 
 }
