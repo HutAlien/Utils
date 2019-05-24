@@ -1,8 +1,6 @@
-package com.alien.kernel.utils;
+package com.alien.kernel.utils.thread;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.*;
 
 /**
  * @Auther: FengYunJun
@@ -53,7 +51,7 @@ public class MultiThreading implements Runnable {
      * newScheduleThreadPool: 创建一个定长线程池，支持定时及周期性执行任务
      */
     final ExecutorService executorService = Executors.newSingleThreadExecutor();
-    ExecutorService cache=Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+    ExecutorService cache = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 
     //
     LinkedBlockingQueue blockingQueue = new LinkedBlockingQueue();
@@ -72,11 +70,34 @@ public class MultiThreading implements Runnable {
         });
     }
 
+    // Java线程池的完整构造函数
+    //public ThreadPoolExecutor(
+    //  int corePoolSize, // 线程池长期维持的线程数，即使线程处于Idle状态，也不会回收。
+    //  int maximumPoolSize, // 线程数的上限
+    //  long keepAliveTime, TimeUnit unit, // 超过corePoolSize的线程的idle时长，
+    //                                     // 超过这个时间，多余的线程会被回收。
+    //  BlockingQueue<Runnable> workQueue, // 任务的排队队列
+    //  ThreadFactory threadFactory, // 新线程的产生方式
+    //  RejectedExecutionHandler handler) // 拒绝策略  有4种
+
+
+    //java.lang.Runtime.availableProcessors() 方法: 返回可用处理器的Java虚拟机的数量。
+    //构建线程池
+    private static ExecutorService myexecutorService;
+    static {
+        int poolSize = Runtime.getRuntime().availableProcessors() * 2;       //不合理设置会影响性能，甚至耗尽线程
+        BlockingQueue<Runnable> queue=new ArrayBlockingQueue<>(512);//指定容量 避免使用无界队列导致内存溢出
+        RejectedExecutionHandler policy = new ThreadPoolExecutor.DiscardPolicy();//拒绝策略 直接忽略
+        myexecutorService = new ThreadPoolExecutor(poolSize, poolSize, 0, TimeUnit.SECONDS, queue, policy);
+    }
+
+
     /**
+     *
+     *
      * ThreadLocal主要解决的是线程级别的共享变量的问题，即每个线程拥有自己的变量，每个线程绑定自己的变量值，线程变量之间有隔离性。
      *
-     * @param
-     * @return
+     *
      */
 
 

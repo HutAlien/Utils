@@ -21,12 +21,18 @@ public class RedisUtilsTest {
     @Autowired
     private RedisUtils redisUtils;
 
+    @Autowired
+    private RedisUtil redisUtil;
+
     @Test
     public void redisTest() {
-        redisUtils.savaData("user", SysUser.builder().username("alien").password("123456").build());
+       /* redisUtils.savaData("user", SysUser.builder().username("alien").password("123456").build());
         Object user = redisUtils.getData("user");
         log.info("user:{}", user);
-        log.info("-----------------------------");
+        log.info("-----------------------------");*/
+        redisUtil.set("1", "Tom");
+        log.info("1={}",redisUtil.get("1"));
+
     }
 
     @Test
