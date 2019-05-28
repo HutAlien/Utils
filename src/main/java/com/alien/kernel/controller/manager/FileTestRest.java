@@ -55,7 +55,7 @@ public class FileTestRest {
     }
 
     /**
-     * zip压缩文件解压 外部调用接口
+     * zip压缩文件解压
      *
      * @param zipFilePath 解压文件路径
      * @throws FileNotFoundException 解压文件路径错误
@@ -76,9 +76,25 @@ public class FileTestRest {
                     name = name.substring(0, name.length() - 1);
                     File f = new File(parent + File.separator + name);
                     f.mkdir();
-                    System.out.println("mkdir：" + zipFilePath + File.separator + name);
+                    System.out.println("mkdir：" + parent + File.separator + name);
                     //扫描目录中的文件,拿到文件流
-                    FileInputStream fis = new FileInputStream(f);
+                    //List<String> fileNames = scanDirAllFile(f);
+                    File[] files=f.listFiles();
+                    for (File o : files) {
+                        int temp = 0;
+                        File saveFile = new File(parent + File.separator + o.getName());
+                        byte[] bytes = new byte[1024];
+                        try (FileInputStream fis = new FileInputStream(o);
+                             FileOutputStream fos = new FileOutputStream(saveFile)) {
+                            while ((temp = fis.read(bytes)) != -1) {
+                                fos.write(bytes);
+                            }
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
                 } else {
                     fout = new File(parent, zipEntry.getName());
                     if (!fout.exists()) {
@@ -146,8 +162,9 @@ public class FileTestRest {
             logger.debug("fileName = {}", dir.getName());
             try {
                 String path = dir.getPath();
-                FileInputStream fis = new FileInputStream(dir.getAbsolutePath());//文件输入流
+                FileInputStream fis = new FileInputStream(path);//文件输入流
                 while ((temp = fis.read(bytes)) != -1) {
+
 
                 }
             } catch (FileNotFoundException e) {
@@ -229,9 +246,6 @@ public class FileTestRest {
     }
 
     public static void main(String[] args) throws IOException {
-        //decompression("F:\\test\\测试图片.zip");
-        //writeFile(new File("F:\\test\\测试图片\\a.png"), new File("F:\\test1\\a.png"));
-        //readFile(new File("F:\\a.txt"));
-        readFileByReader(new File("F:\\a.txt"));
+        decompression("E:\\test\\学生照片.zip");
     }
 }
