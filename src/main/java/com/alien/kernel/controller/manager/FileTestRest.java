@@ -17,6 +17,7 @@ import java.nio.charset.Charset;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+import java.util.zip.ZipOutputStream;
 
 /**
  * @Auther: FYJ
@@ -76,9 +77,7 @@ public class FileTestRest {
                     name = name.substring(0, name.length() - 1);
                     File f = new File(parent + File.separator + name);
                     f.mkdir();
-                    System.out.println("mkdir：" + parent + File.separator + name);
-                    //扫描目录中的文件,拿到文件流
-                    //List<String> fileNames = scanDirAllFile(f);
+                   /* System.out.println("mkdir：" + parent + File.separator + name);
                     File[] files=f.listFiles();
                     for (File o : files) {
                         int temp = 0;
@@ -94,7 +93,7 @@ public class FileTestRest {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                    }
+                    }*/
                 } else {
                     fout = new File(parent, zipEntry.getName());
                     if (!fout.exists()) {
@@ -243,6 +242,22 @@ public class FileTestRest {
             sb.append(s);
         }
         System.out.println(sb.toString());
+    }
+
+    /**
+     * 文件压缩
+     *
+     * @param
+     * @return
+     */
+    public static void compressZipFile(String filePath) {
+        try (ZipOutputStream zipOutputStream = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(filePath)))) {
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) throws IOException {

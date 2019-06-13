@@ -179,6 +179,7 @@ public class LeetCode {
             val = x;
         }
     }
+
     /**
      * 二叉树的最大深度
      *
@@ -533,19 +534,36 @@ public class LeetCode {
         unPreOrder(root.left);
     }
 
+    /**
+     * 二分查找
+     *
+     * @param
+     * @return
+     */
+    public static int search(int[] nums, int target) {
+        int low = 0;
+        int hight = nums.length - 1;
+        while (low <= hight) {
+            int mid = (hight + low) / 2;
+            if (target == nums[mid]) {
+                return mid;
+            } else if (target > nums[mid]) {
+                low = mid + 1;
+            } else {
+                hight = mid - 1;
+            }
+        }
+        return -1;
+    }
+
 
     public static void main(String[] args) {
-        ClassLoader classLoader = LeetCode.class.getClassLoader();//获取leetcode的类加载器
+       /* ClassLoader classLoader = LeetCode.class.getClassLoader();//获取leetcode的类加载器
         System.out.println(classLoader);
         ClassLoader classLoader1 = classLoader.getParent();
-        System.out.println(classLoader1);
+        System.out.println(classLoader1);*/
         //
-        TreeNode treeNode=new TreeNode(1);
-        TreeNode treeNode1=new TreeNode(2);
-        TreeNode treeNode2=new TreeNode(3);
-        treeNode1.left=treeNode;
-        treeNode1.right=treeNode2;
-        TreeNode root=convertBST(treeNode1);
-
+        int[] nums = {1, 2, 3, 4, 5, 6, 7};
+        System.out.println(search(nums, 9));
     }
 }

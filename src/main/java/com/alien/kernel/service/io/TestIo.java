@@ -36,7 +36,7 @@ public class TestIo {
     public void PropertiesTest(){
         Properties properties=new Properties();
         //1 使用class变量的getResourceAsStream()方法
-      /*  InputStream is=getClass().getClassLoader().getResourceAsStream("location.properties");
+        InputStream is=getClass().getClassLoader().getResourceAsStream("location.properties");
         try {
             properties.load(is);
         } catch (IOException e) {
@@ -49,17 +49,8 @@ public class TestIo {
                     e.printStackTrace();
                 }
             }
-        }*/
-        //2
-        try {
-            InputStream in =new BufferedInputStream(new FileInputStream("classpath:location.properties"));
-            properties.load(in);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
-        System.out.println(properties.get("packageScan"));
+
     }
 
 }
