@@ -69,13 +69,8 @@ public class StringUtils {
     }
 
     public static void main(String[] args) {
-        Set set = new HashSet();
-        set.add("a");
-        set.add("a");
-        for (Object s : set) {
-            System.out.println(s);
-        }
-        //System.out.println(getUUID());
+        int i = 100_00;
+        System.out.println(i);
     }
 
 }

@@ -251,8 +251,60 @@ public class FileTestRest {
      * @return
      */
     public static void compressZipFile(String filePath) {
-        try (ZipOutputStream zipOutputStream = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(filePath)))) {
+        File file = new File(filePath);
+        try (ZipOutputStream zipOutputStream = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(file.getAbsolutePath() + ".zip")))) {
+            compressZIP(file, zipOutputStream, file.getName());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
+    /**
+     * 递归压缩
+     *
+     * @param
+     * @return
+     */
+    public static void compressZIP(File file, ZipOutputStream zipOutputStream, String oriName) {
+        if (!file.exists()) {
+            return;
+        }
+        if (file.isDirectory()) {
+            File[] files = file.listFiles();
+            for (File f : files) {
+                if (f.isDirectory()) {
+                    compressZIP(f, zipOutputStream, oriName);
+                } else {
+                    zip(f, zipOutputStream, oriName);
+                }
+            }
+        } else {
+            zip(file, zipOutputStream, oriName);
+        }
+    }
+
+    /**
+     * 实现压缩
+     *
+     * @param
+     * @return
+     */
+    public static void zip(File file, ZipOutputStream zipOutputStream, String oriName) {
+        ZipEntry zipEntry = new ZipEntry(oriName + file.getAbsolutePath().split(oriName)[1]);
+        try {
+            zipOutputStream.putNextEntry(zipEntry);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //压缩
+        try (FileInputStream inputStream = new FileInputStream(file)) {
+            byte[] bytes = new byte[1024];
+            int read;
+            while ((read = inputStream.read(bytes)) != -1) {
+                zipOutputStream.write(bytes);
+            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -261,6 +313,7 @@ public class FileTestRest {
     }
 
     public static void main(String[] args) throws IOException {
-        decompression("E:\\test\\学生照片.zip");
+        //decompression("E:\\test\\学生照片.zip");
+        compressZipFile("E:\\test");
     }
 }
