@@ -556,14 +556,55 @@ public class LeetCode {
         return -1;
     }
 
+    /**
+     * 原地删除数组中的重复项
+     *
+     * @param
+     * @return 数组项数
+     */
+    public static int deleteArrayItem(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        int temp = 0;
+        Arrays.sort(nums);
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[temp] != nums[i]) {
+                temp++;
+                nums[temp] = nums[i];
+            }
+        }
+        return temp + 1;
+    }
+
+    /**
+     * 原地移除数组
+     *
+     * @param
+     * @return 数组项数
+     */
+    public int removeElement(int[] nums, int val) {
+        int temp = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != val) {
+                nums[temp++] = nums[i];
+            }
+        }
+        return temp;
+    }
 
     public static void main(String[] args) {
        /* ClassLoader classLoader = LeetCode.class.getClassLoader();//获取leetcode的类加载器
         System.out.println(classLoader);
         ClassLoader classLoader1 = classLoader.getParent();
-        System.out.println(classLoader1);*/
-        //
+        System.out.println(classLoader1);
+
         int[] nums = {1, 2, 3, 4, 5, 6, 7};
         System.out.println(search(nums, 9));
+        */
+        int a[] = {1, 1, 2, 3, 3, 5};
+        for (int i = 0; i < deleteArrayItem(a); i++) {
+            System.out.println(a[i]);
+        }
     }
 }

@@ -133,6 +133,16 @@ public class ListTest {
 
     @Test
     public void TestAdd() {
-
+        /**
+         * 在直接使用Arrays.asList()生成list的时候，不能使用list集合的操作方法，会抛出异常，
+         * 可以在外层包一层真正的ArrayList
+         *
+         * Arrays.asList()底层其实还是数组
+         */
+        //List<String> testList=Arrays.asList("a","b","c");
+        List<String> list=new ArrayList<>(Arrays.asList("a","b","c","d"));
+        list.forEach(System.out::println);
+        list.add("c");
+       list.forEach(System.out::println);
     }
 }
