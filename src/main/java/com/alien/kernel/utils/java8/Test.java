@@ -102,13 +102,13 @@ public class Test {
 
             //访问属性
             Field[] fields = c.getDeclaredFields();     //获取类所有属性
-            Arrays.stream(fields).forEach((o) -> System.out.println(o.getName()));          //getField 只能获取public的，包括从父类继承来的字段。
+            Arrays.stream(fields).forEach((o) -> System.out.println(o.getName()));  //getField 只能获取public的，包括从父类继承来的字段。
             //获取指定属性
             Field field = c.getDeclaredField("name");
             //log.info("name={}", field);
             field.setAccessible(true);//设置允许访问私有属性值
             //
-            Field[] fields1 = c.getFields();          //getDeclaredField 可以获取本类所有的字段，包括private的，但是不能获取继承来的字段。 (注： 这里只能获取到private的字段，但并不能访问该private字段的值,除非加上setAccessible(true))
+            Field[] fields1 = c.getFields();    //getDeclaredField 可以获取本类所有的字段，包括private的，但是不能获取继承来的字段。 (注： 这里只能获取到private的字段，但并不能访问该private字段的值,除非加上setAccessible(true))
             // Field field1 = c.getField("name");
             //将employee2对象的name属性值设置为Bob
             field.set(employee2, "Bob");

@@ -1,10 +1,10 @@
 package com.alien.kernel.collection;
 
+import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -50,5 +50,16 @@ public class MapTest {
         }
         log.info("wordCounts = {}", wordCounts);
 
+    }
+
+    @Test
+    public void computeIfAbsent() {
+        Map<String, StringBuffer> resultMap = Maps.newHashMap();
+        resultMap.put("A", new StringBuffer("this is A"));
+        List<String> list = new ArrayList<>(Arrays.asList("A", "B", "C", "D"));
+        list.forEach(item -> {
+            resultMap.computeIfAbsent(item, key -> new StringBuffer("This is "+item)).append(" Hi");//这里可对key对应的value进行加工
+        });
+        log.info("resultMap={}", resultMap);
     }
 }

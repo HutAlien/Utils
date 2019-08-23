@@ -91,7 +91,6 @@ public class MultiThreading implements Runnable {
         myexecutorService = new ThreadPoolExecutor(poolSize, poolSize, 0, TimeUnit.SECONDS, queue, policy);
     }
 
-
     /**
      *
      *
@@ -100,5 +99,16 @@ public class MultiThreading implements Runnable {
      *
      */
 
+
+    /**
+     *<p>
+     * @Async注解使用条件：
+     *
+     * 一般用在类的方法上，如果用在类上，那么这个类的所有方法都是异步执行的
+     * 所使用的@Async注解方法的类对象应该是Spring容器管理的bean对象；
+     * 调用异步方法类上需要配置上注解@EnableAsync
+     *
+     *</p>
+     */
 
 }

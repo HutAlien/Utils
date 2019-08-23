@@ -1,6 +1,7 @@
 package com.alien.kernel.collection;
 
 import com.alien.kernel.entity.Employee;
+import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.nutz.json.Json;
@@ -87,8 +88,6 @@ public class ListTest {
         log.info("list sum={}", statistics.getSum());
         log.info("list count={}", statistics.getCount());
         log.info("list stati={}", stati);
-
-
     }
 
     @Test
@@ -120,7 +119,6 @@ public class ListTest {
         String Names = employees.stream().map(Employee::getName).collect(joining(","));
         log.info("names={}", Names);
 
-
         employees.forEach(employee -> {
 
         });
@@ -144,5 +142,11 @@ public class ListTest {
         list.forEach(System.out::println);
         list.add("c");
        list.forEach(System.out::println);
+    }
+
+    public static void main(String[] args) {
+        List<String> list= Lists.newArrayList("1","2","3");
+        String[] target=list.toArray(new String[list.size()]);  //list转数组
+        log.info("target={}",Json.toJson(target));
     }
 }
