@@ -17,7 +17,7 @@ public class TestIo {
     public static void main(String[] args) throws FileNotFoundException {
         List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6);
         OutputStream outputStream = new FileOutputStream("D:/hello");
-        for (Integer o:list){
+        for (Integer o : list) {
             try {
                 outputStream.write(o);
             } catch (IOException e) {
@@ -29,20 +29,20 @@ public class TestIo {
     /**
      * 读取properties文件
      *
-     *@param
-     *@return
+     * @param
+     * @return
      */
     @Test
-    public void PropertiesTest(){
-        Properties properties=new Properties();
+    public void PropertiesTest() {
+        Properties properties = new Properties();
         //1 使用class变量的getResourceAsStream()方法
-        InputStream is=getClass().getClassLoader().getResourceAsStream("location.properties");
+        InputStream is = getClass().getClassLoader().getResourceAsStream("location.properties");
         try {
             properties.load(is);
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
-            if (is!=null){
+        } finally {
+            if (is != null) {
                 try {
                     is.close();
                 } catch (IOException e) {

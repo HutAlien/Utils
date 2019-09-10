@@ -29,7 +29,7 @@ public class WebSocketConfigure implements WebSocketConfigurer {
 
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry webSocketHandlerRegistry) {
-        webSocketHandlerRegistry.addHandler(myWebSocketHandler(),"/websocket/echo")
+        webSocketHandlerRegistry.addHandler(myWebSocketHandler(), "/websocket/echo")
                 .addInterceptors(myWebSocketHandShake())
                 .setAllowedOrigins("*");
     }

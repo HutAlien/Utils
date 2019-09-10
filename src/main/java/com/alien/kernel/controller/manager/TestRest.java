@@ -16,7 +16,7 @@ public class TestRest {
 
     @GetMapping
     public String getHost(ModelMap map) {
-        map.addAttribute("host","This is a test");
+        map.addAttribute("host", "This is a test");
         return "index";
     }
 }

@@ -44,7 +44,7 @@ public class MyWebSocketHandler implements WebSocketHandler {
         //服务端发送给客户端
         //webSocketSession.sendMessage(new TextMessage("Hi,I am server!"));
         WebSocketUser user = (WebSocketUser) webSocketSession.getAttributes().get("userInfo");
-        sendMessageToAll(new TextMessage("用户" + user.getUsername() + "已上线,当前线上用户数"+onLineUserList.size()));
+        sendMessageToAll(new TextMessage("用户" + user.getUsername() + "已上线,当前线上用户数" + onLineUserList.size()));
     }
 
 
@@ -68,6 +68,7 @@ public class MyWebSocketHandler implements WebSocketHandler {
             }
         }
     }
+
     /**
      * 处理错误
      *
@@ -89,7 +90,7 @@ public class MyWebSocketHandler implements WebSocketHandler {
     public void afterConnectionClosed(WebSocketSession webSocketSession, CloseStatus closeStatus) throws Exception {
         onLineUserList.remove(webSocketSession);
         WebSocketUser user = (WebSocketUser) webSocketSession.getAttributes().get("userInfo");
-        sendMessageToAll(new TextMessage("用户" + user.getUsername() + "已下线,当前用户数"+onLineUserList.size()));
+        sendMessageToAll(new TextMessage("用户" + user.getUsername() + "已下线,当前用户数" + onLineUserList.size()));
     }
 
     @Override

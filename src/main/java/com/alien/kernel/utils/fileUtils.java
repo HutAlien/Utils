@@ -22,7 +22,7 @@ import java.util.zip.ZipOutputStream;
 public class fileUtils {
 
 
-    private static Logger logger=LoggerFactory.getLogger(fileUtils.class);
+    private static Logger logger = LoggerFactory.getLogger(fileUtils.class);
 
     /**
      * 解压zip
@@ -63,8 +63,9 @@ public class fileUtils {
 
     /**
      * 具体实现文件压缩
+     *
      * @param zipOutput
-     * @param file 待压缩文件或文件夹
+     * @param file      待压缩文件或文件夹
      * @param base
      */
     private static void zip(ZipOutputStream zipOutput, File file, String base) {

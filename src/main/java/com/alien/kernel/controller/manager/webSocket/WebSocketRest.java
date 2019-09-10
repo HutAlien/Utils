@@ -24,18 +24,18 @@ public class WebSocketRest {
     @GetMapping
     public ModelAndView getOnlineCount(ModelAndView mv) {
         //return new AjaxResult(200, "获取成功", MyWebSocketHandler.getOnlineUser());
-        mv.addObject("userList",MyWebSocketHandler.getOnlineUser());
+        mv.addObject("userList", MyWebSocketHandler.getOnlineUser());
         mv.setViewName("index.html");
         return mv;
     }
 
     /**
-     *获取在线人数统计
+     * 获取在线人数统计
      *
-     *@param
-     *@return
+     * @param
+     * @return
      */
-    public AjaxResult getUserCount(){
-        return new AjaxResult(200,"获取成功",null,MyWebSocketHandler.getOnlineUser().size());
+    public AjaxResult getUserCount() {
+        return new AjaxResult(200, "获取成功", null, MyWebSocketHandler.getOnlineUser().size());
     }
 }

@@ -7,7 +7,7 @@
 <body>
 <h1 th:text="${host}">Hello world</h1>
 <h1 th:text="${userList}"></h1>
-<button type="button"  value="" onclick="closeSocket() ">断开连接</button>
+<button type="button" value="" onclick="closeSocket() ">断开连接</button>
 </body>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
@@ -40,6 +40,7 @@
             //此时可以尝试刷新页面
         }
     }
+
     function closeSocket() {
         socket.close();
         console.log("Socket连接已关闭")

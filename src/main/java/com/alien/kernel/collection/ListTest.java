@@ -123,7 +123,7 @@ public class ListTest {
 
         });
 
-        employees.forEach((o)->{
+        employees.forEach((o) -> {
 
         });
 
@@ -138,15 +138,20 @@ public class ListTest {
          * Arrays.asList()底层其实还是数组
          */
         //List<String> testList=Arrays.asList("a","b","c");
-        List<String> list=new ArrayList<>(Arrays.asList("a","b","c","d"));
+        List<String> list = new ArrayList<>(Arrays.asList("a", "b", "c", "d"));
         list.forEach(System.out::println);
         list.add("c");
-       list.forEach(System.out::println);
+        list.forEach(System.out::println);
     }
 
     public static void main(String[] args) {
-        List<String> list= Lists.newArrayList("1","2","3");
+      /*  List<String> list= Lists.newArrayList("1","2","3");
         String[] target=list.toArray(new String[list.size()]);  //list转数组
-        log.info("target={}",Json.toJson(target));
+        log.info("target={}",Json.toJson(target));*/
+        //
+        List<Integer> list1 = Lists.newArrayList(1, 2, 3, 4);
+        Integer[] number = list1.toArray(new Integer[list1.size()]);
+        log.info("number={}", Json.toJson(number));
     }
+
 }

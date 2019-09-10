@@ -593,18 +593,60 @@ public class LeetCode {
         return temp;
     }
 
+    /**
+     * 返回绝对值为k的整数对
+     *
+     * @param
+     * @return
+     */
+    public static int findPairs(int[] nums, int k) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        Set<Integer> set = Arrays.stream(nums).distinct().boxed().sorted().collect(Collectors.toSet());
+        int count = 0;
+        for (Integer i : set) {
+            for (Integer j : set) {
+                if (Math.abs(i - j) == k) {
+                    count++;
+                }
+            }
+        }
+        return count / 2;
+    }
+
+    /**
+     * 同构字符串
+     *
+     * @param
+     * @return
+     */
+    public static boolean isIsomorphic(String s, String t) {
+        if (s == null || t == null || s.length() != t.length()) {
+            return false;
+        }
+        Map<Character, Character> map = new HashMap<>();
+        for (int i = 0; i < s.length(); i++) {
+            if (map.containsKey(s.charAt(i))) {
+                if (!map.get(s.charAt(i)).equals(t.charAt(i))) {
+                    return false;
+                }
+                continue;
+            }
+            if (map.containsValue(t.charAt(i))) {
+                return false;
+            }
+            map.put(s.charAt(i), t.charAt(i));
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
        /* ClassLoader classLoader = LeetCode.class.getClassLoader();//获取leetcode的类加载器
         System.out.println(classLoader);
         ClassLoader classLoader1 = classLoader.getParent();
         System.out.println(classLoader1);
-
-        int[] nums = {1, 2, 3, 4, 5, 6, 7};
-        System.out.println(search(nums, 9));
         */
-        int a[] = {1, 1, 2, 3, 3, 5};
-        for (int i = 0; i < deleteArrayItem(a); i++) {
-            System.out.println(a[i]);
-        }
+
     }
 }

@@ -106,9 +106,6 @@ public class SortArithmetic {
     }
 
 
-
-
-
     public static void main(String[] args) {
         int a[] = new int[]{3, 1, 4, 6, 8, 0};
         log.info("sort={}", sort(new int[]{3, 1, 4, 6, 8, 0}, 0, 5));
