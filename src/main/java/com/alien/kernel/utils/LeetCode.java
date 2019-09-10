@@ -640,6 +640,23 @@ public class LeetCode {
         }
         return true;
     }
+    /**
+     * 位 1 的个数
+     * 我们遍历数字的 32 位。如果某一位是 1 ，将计数器加一。
+     *@param
+     *@return
+     */
+    public static int hammingWeight(int n) {
+        int count=0;
+        int mask=1;
+        for (int i=0;i<32;i++){
+            if ((mask&n)!=0){
+                count++;
+            }
+            mask<<=1;
+        }
+        return count;
+    }
 
     public static void main(String[] args) {
        /* ClassLoader classLoader = LeetCode.class.getClassLoader();//获取leetcode的类加载器
@@ -647,6 +664,6 @@ public class LeetCode {
         ClassLoader classLoader1 = classLoader.getParent();
         System.out.println(classLoader1);
         */
-
+        System.out.println(hammingWeight(3));
     }
 }
