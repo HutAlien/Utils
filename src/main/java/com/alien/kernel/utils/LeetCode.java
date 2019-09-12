@@ -643,6 +643,8 @@ public class LeetCode {
     /**
      * 位 1 的个数
      * 我们遍历数字的 32 位。如果某一位是 1 ，将计数器加一。
+     *
+     * <<左移    >>右移   >>>无符号右移，空位补0
      *@param
      *@return
      */
@@ -656,6 +658,10 @@ public class LeetCode {
             mask<<=1;
         }
         return count;
+    }
+
+    public int reverseBits(int n) {
+        return 0;
     }
 
     public static void main(String[] args) {

@@ -25,7 +25,7 @@ public class Singleton_3 implements Serializable {
 
 
     //静态内部类虽然得到的实例是线程安全的，但如果遇到序列化对象时，得到得结果还是多例的
-    //解决办法： 就是在反序列化的过程中使用readResolve()方法
+    //解决办法： 就是在反序列化的过程中使用readResolve()方法！！
     public static void main(String[] args) {
         Singleton_3 singleton_3 = Singleton_3.getInstance();
         //序列化

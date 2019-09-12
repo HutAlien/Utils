@@ -1,5 +1,6 @@
 package com.alien.kernel.utils.thread;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
@@ -9,11 +10,21 @@ import org.springframework.stereotype.Component;
  * @Description:
  */
 @Component
+@Slf4j
 public class AsyncTest {
 
+    /**
+     * 在使用默认的线程池调用异步方法的时候，会出现异常，但仍可以调用成功
+     *
+     *
+     *
+     *@param
+     *@return
+     */
     @Async
     public void printAsyncResult() throws InterruptedException {
-        Thread.sleep(3000);
-        System.out.println("this is test method");
+        log.info("begin...................");
+         Thread.sleep(3000);
+        log.info("end.....................");
     }
 }
