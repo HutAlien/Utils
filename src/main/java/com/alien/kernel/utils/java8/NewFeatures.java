@@ -17,7 +17,8 @@ public class NewFeatures {
     private static String getInfo(Employee employee) {
         //Optional<Employee> optional=Optional.ofNullable(employee); 创建一个optional对象，不允许为空,为空则返回空
         //Optional.of() 创建一个optional对象，为空则抛出异常
-       return Optional.ofNullable(employee).map((e)->e.getName()).orElse("name is null");
+        //return Optional.ofNullable(employee).map((e)->e.getName()).orElse("name is null");
+        return Optional.ofNullable(employee).map((e)->e.getName()).orElseGet(()->"jack");//orElseGet()给对象赋值
     }
 
     private void set(String name){
@@ -30,6 +31,5 @@ public class NewFeatures {
         System.out.println(getInfo(employee));
         //
         NewFeatures newFeatures=new NewFeatures();
-        newFeatures.set(null);
     }
 }

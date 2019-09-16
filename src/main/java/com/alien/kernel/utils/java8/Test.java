@@ -1,8 +1,6 @@
 package com.alien.kernel.utils.java8;
 
 import com.alien.kernel.entity.Employee;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Constructor;
@@ -11,7 +9,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
@@ -54,18 +51,6 @@ public class Test {
     }
 
     public static void main(String[] args) {
-        /*List<Employee> list = Lists.newArrayList();
-        Employee employee = new Employee(1, "Tom", 12, 111.0);
-        Employee employee1 = new Employee(1, "Jerry", 12, 111.0);
-        Employee employee2 = new Employee(1, "Tom", 12, 111.0);
-        list.add(employee);
-        list.add(employee1);
-        list.add(employee2);
-        Map<String, Integer> map = Maps.newHashMap();
-        list.stream().forEach((e) -> {
-            map.merge(e.getName(), e.getAge(), (a, b) -> (a + b));
-        });
-        log.info("map={}", map);*/
         TestThread();
     }
 

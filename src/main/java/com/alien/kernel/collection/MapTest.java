@@ -1,5 +1,7 @@
 package com.alien.kernel.collection;
 
+import com.alien.kernel.entity.Employee;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -61,5 +63,31 @@ public class MapTest {
             resultMap.computeIfAbsent(item, key -> new StringBuffer("This is " + item)).append(" Hi");//这里可对key对应的value进行加工
         });
         log.info("resultMap={}", resultMap);
+    }
+
+    @Test
+    public void TestMerge() {
+        List<Employee> list = Lists.newArrayList();
+        Employee employee = new Employee(1, "Tom", 12, 111.0);
+        Employee employee1 = new Employee(1, "Jerry", 12, 111.0);
+        Employee employee2 = new Employee(1, "Tom", 12, 111.0);
+        list.add(employee);
+        list.add(employee1);
+        list.add(employee2);
+        Map<String, Integer> map = Maps.newHashMap();
+        list.stream().forEach((e) -> {
+            map.merge(e.getName(), e.getAge(), (a, b) -> (a + b));//合并
+        });
+        log.info("map={}", map);
+    }
+
+    public static void main(String[] args) {
+        Map<Integer, Object> map = Maps.newHashMap();
+        map.put(0, "this is 0");
+        for (int i = 0; i < 5; i++) {
+            map.putIfAbsent(i, "val" + i);
+        }
+        map.forEach((k, v) -> System.out.println(v));
+        System.out.println(map.getOrDefault(12, "not found"));
     }
 }
