@@ -95,7 +95,8 @@ public class MultiThreading implements Runnable {
     /**
      *
      *
-     * ThreadLocal主要解决的是线程级别的共享变量的问题，即每个线程拥有自己的变量，每个线程绑定自己的变量值，线程变量之间有隔离性。
+     * ThreadLocal主要解决的是线程级别的共享变量的问题，即每个线程拥有自己的变量，每个线程绑定自己的变量值，
+     * 线程变量之间有隔离性。
      *
      *
      */

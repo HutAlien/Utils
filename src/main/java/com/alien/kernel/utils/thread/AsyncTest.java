@@ -4,6 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
+import java.util.concurrent.locks.Lock;
+
 /**
  * @Auther: FYJ
  * @Date: 2019/8/28 9:03

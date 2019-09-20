@@ -39,6 +39,7 @@ public class TestIo {
         InputStream is = getClass().getClassLoader().getResourceAsStream("location.properties");
         try {
             properties.load(is);
+            System.out.println(properties.getProperty("packageScan"));
         } catch (IOException e) {
             e.printStackTrace();
         } finally {

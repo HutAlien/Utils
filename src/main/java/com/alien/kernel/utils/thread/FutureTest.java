@@ -10,7 +10,7 @@ import java.util.concurrent.*;
  * @Date: 2019/5/22 14:20
  * @Description:
  */
-public class ThreadTest {
+public class FutureTest {
 
 
     private static String methodA() throws InterruptedException {
