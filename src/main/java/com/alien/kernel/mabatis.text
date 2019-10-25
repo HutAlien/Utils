@@ -1,0 +1,14 @@
+sqlSessionFactoryBuilder
+sqlSessionFactory
+sqlSession  ->原生mybatis会返回defaultSqlSession，使用其中的openSqlSession方法返回接口，接口封装了DB的操作方法
+            ->和Spring整合后，封装成了template，使用的时候直接注入使用
+
+PS: 在Spring中，通常不会使用new DefaultSqlSession()方法去操作：
+    1.它不是线程安全的
+    2.不能保证事务
+
+Spring的一些扩展接口（扩展点）
+
+
+在与Spring整合后，使用JDK动态代理(实现了InvocationHandler接口)实现Mapper接口，而每次对数据库的操作可以共享一个sqlSession
+这样就保证了事务，并且，sqlSession是用ThreadLocal获取，所以是线程安全的，不存在并发问题。

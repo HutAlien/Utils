@@ -6,6 +6,7 @@ package com.alien.kernel.service.pattern.proxy;
  * @Description:
  */
 public interface IPerson {
+    int i=0;
     void SayHellow();
 
     void SayBye();
