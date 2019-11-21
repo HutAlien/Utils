@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
  * @Date: 2018/11/28 09:09
  * @Description:
  */
-@Configuration
+//@Configuration
 public class RabbitMqConfig {
     public static String msg = "topic.msg";
     public static String msgs = "topic.msgs";

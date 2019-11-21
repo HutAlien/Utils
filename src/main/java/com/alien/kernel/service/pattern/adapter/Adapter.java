@@ -13,7 +13,7 @@ public class Adapter extends SourceClass implements ITargetTable {
 
 
     /**
-     * 类-适配器模式 （将SourceClass的功能扩展到接口ITargetable中）
+     * 类-适配器模式 （将SourceClass的功能扩展到接口ITargetTable中）
      * <p>
      * 在接口中定义一个和source中相同的方法，在适配时不对其实现，它会调用父类的实现
      *

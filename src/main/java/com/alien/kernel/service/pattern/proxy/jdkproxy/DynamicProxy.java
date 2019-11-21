@@ -1,4 +1,4 @@
-package com.alien.kernel.service.pattern.proxy;
+package com.alien.kernel.service.pattern.proxy.jdkproxy;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -10,6 +10,7 @@ import java.lang.reflect.Proxy;
  * @Description: JDK动态代理
  */
 public class DynamicProxy implements InvocationHandler {
+
     private Object target;
 
     public DynamicProxy(Object target) {
@@ -18,14 +19,21 @@ public class DynamicProxy implements InvocationHandler {
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable { //add()
-        MonitorSession.begin(method.getName());
+        System.out.println("before-----------------");
         Object obj = method.invoke(target, args);
-        MonitorSession.end();
+        System.out.println("after--------------------");
         return obj;
     }
 
+    /**
+     * this表示实现InvocationHandler接口的类，里面的invoke方法是关联的处理逻辑
+     *
+     *@param
+     *@return
+     */
     @SuppressWarnings("unchecked")
     public <T> T getProxy() {
-        return (T) Proxy.newProxyInstance(target.getClass().getClassLoader(), target.getClass().getInterfaces(), this);
+        return (T) Proxy.newProxyInstance(target.getClass().getClassLoader(),
+                target.getClass().getInterfaces(), this);
     }
 }

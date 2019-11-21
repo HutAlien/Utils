@@ -1,4 +1,4 @@
-package com.alien.kernel.service.pattern.proxy;
+package com.alien.kernel.service.pattern.proxy.jdkproxy;
 
 /**
  * @Auther: FengYunJun
@@ -6,6 +6,7 @@ package com.alien.kernel.service.pattern.proxy;
  * @Description: 获取代理对象
  */
 public class PersonProxyFactory {
+
     public static IPerson newJdkProxy() {
         // 代理PersonImpl
         DynamicProxy dynamicProxy = new DynamicProxy(new PersonImpl());

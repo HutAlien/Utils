@@ -1,4 +1,6 @@
-package com.alien.kernel.service.pattern.proxy;
+package com.alien.kernel.service.pattern.proxy.jdkproxy;
+
+import com.alien.kernel.service.pattern.proxy.jdkproxy.IPerson;
 
 /**
  * @Auther: FengYunJun

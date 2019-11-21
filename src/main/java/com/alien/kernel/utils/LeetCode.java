@@ -660,6 +660,21 @@ public class LeetCode {
         return count;
     }
 
+    /**
+     * 两整数之和
+     *
+     *@param
+     *@return
+     */
+    public static int getSum(int a, int b) {
+        while (b != 0) {
+            int res = (a & b) << 1;
+            a = a ^ b;
+            b = res;
+        }
+        return a;
+    }
+
     public int reverseBits(int n) {
         return 0;
     }
@@ -670,6 +685,6 @@ public class LeetCode {
         ClassLoader classLoader1 = classLoader.getParent();
         System.out.println(classLoader1);
         */
-        System.out.println(hammingWeight(3));
+        System.out.println(getSum(1,1));
     }
 }

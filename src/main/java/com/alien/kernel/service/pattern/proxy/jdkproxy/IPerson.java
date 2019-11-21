@@ -1,4 +1,4 @@
-package com.alien.kernel.service.pattern.proxy;
+package com.alien.kernel.service.pattern.proxy.jdkproxy;
 
 /**
  * @Auther: FengYunJun
@@ -6,7 +6,8 @@ package com.alien.kernel.service.pattern.proxy;
  * @Description:
  */
 public interface IPerson {
-    int i=0;
+    int i = 0;
+
     void SayHellow();
 
     void SayBye();

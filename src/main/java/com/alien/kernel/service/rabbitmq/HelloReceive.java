@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
  * @Date: 2018/11/28 09:17
  * @Description:
  */
-@RabbitListener(queues = "topic.msg")
-@Component
+//@RabbitListener(queues = "topic.msg")
+//@Component
 public class HelloReceive {
     @RabbitHandler
     public void process(String hello) {

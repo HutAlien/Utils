@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  * @Description:
  */
 @Slf4j
-@Component
+//@Component
 public class HelloSender {
     @Autowired
     private AmqpTemplate rabbitTemplate;
