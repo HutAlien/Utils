@@ -3,11 +3,11 @@ package com.alien.kernel.collection;
 import com.alien.kernel.entity.Employee;
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections.CollectionUtils;
 import org.junit.jupiter.api.Test;
 import org.nutz.json.Json;
 
 import java.util.*;
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
@@ -149,25 +149,21 @@ public class ListTest {
 
 
     /**
-     * CopyOnWriteArrayList的CUD等方法都是加上了锁（通过lock）保证线程安全，读操作没有。
-     * 写入时先复制，写入完成后把元数据替换成当前副本
-     * <p>
-     * <p>
-     * Vector的curd方法都加上Synchronized保证线程安全，效率较低。
+     * 集合的交并补
      *
      * @Param:
      * @return:
      */
     @Test
-    public void threadList() {
-        List<String> list = new CopyOnWriteArrayList<>();
-        List<String> vector = new Vector<>();
+    public void ListCalculate() {
+        List<String> listA = Lists.newArrayList("1", "2", "3", "4");
+        List<String> listB = Lists.newArrayList("1", "2", "4");
+        listA.forEach(System.out::println);
+        log.info("---------" + CollectionUtils.retainAll(listA, listB) + "------------");
+
     }
 
     public static void main(String[] args) {
-      /*  List<String> list= Lists.newArrayList("1","2","3");
-        String[] target=list.toArray(new String[list.size()]);  //list转数组
-        log.info("target={}",Json.toJson(target));*/
         //
         List<Integer> list1 = Lists.newArrayList(1, 2, 3, 4);
         Integer[] number = list1.toArray(new Integer[list1.size()]);
