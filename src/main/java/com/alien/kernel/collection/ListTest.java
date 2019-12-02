@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.nutz.json.Json;
 
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
@@ -122,26 +123,45 @@ public class ListTest {
         employees.forEach(employee -> {
 
         });
-
         employees.forEach((o) -> {
+
+        });
+        employees.parallelStream().forEach((employee) -> {
 
         });
 
     }
 
+    /**
+     * 在直接使用Arrays.asList()生成list的时候，不能使用list集合的操作方法，会抛出异常，
+     * 可以在外层包一层真正的ArrayList
+     * <p>
+     * Arrays.asList()底层其实还是数组
+     */
     @Test
     public void TestAdd() {
-        /**
-         * 在直接使用Arrays.asList()生成list的时候，不能使用list集合的操作方法，会抛出异常，
-         * 可以在外层包一层真正的ArrayList
-         *
-         * Arrays.asList()底层其实还是数组
-         */
         //List<String> testList=Arrays.asList("a","b","c");
         List<String> list = new ArrayList<>(Arrays.asList("a", "b", "c", "d"));
         list.forEach(System.out::println);
         list.add("c");
         list.forEach(System.out::println);
+    }
+
+
+    /**
+     * CopyOnWriteArrayList的CUD等方法都是加上了锁（通过lock）保证线程安全，读操作没有。
+     * 写入时先复制，写入完成后把元数据替换成当前副本
+     * <p>
+     * <p>
+     * Vector的curd方法都加上Synchronized保证线程安全，效率较低。
+     *
+     * @Param:
+     * @return:
+     */
+    @Test
+    public void threadList() {
+        List<String> list = new CopyOnWriteArrayList<>();
+        List<String> vector = new Vector<>();
     }
 
     public static void main(String[] args) {
