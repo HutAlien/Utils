@@ -1,12 +1,11 @@
 package com.alien.kernel.utils.concurrent;
 
+import com.alien.kernel.entity.Employee;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.*;
 
 /**
  * @author: alien
@@ -71,11 +70,17 @@ public class ThreadSafeCollections {
         List<String> vector = new Vector<>();
         //返回一个加锁线程安全的list
         List<String> list1 = Collections.synchronizedList(new ArrayList<>());
-
     }
+
     /**
      * hashMap():
      * 扩容这个过程涉及到 rehash、复制数据等操作，所以非常消耗性能。因此最好能指定容量，以减少扩容带来的性能消耗
+     *
+     * concurrentHashMap():
+     * 不像hashTable一样效率低下(因为所有访问hashTable的线程读必须竞争同一把锁)
+     * concurrentHashMap使用的是锁分段技术，将数据分成一段一段地存放，然后给每段数据加上锁，这样当一个线程访问其中一段数据的时候，
+     * 其他段的数据也可以被其他线程访问到。
+     *
      *
      *
      *
@@ -83,5 +88,77 @@ public class ThreadSafeCollections {
     @Test
     public void concurrentHashMapTest() {
         Map<String, Object> map = new ConcurrentHashMap<>(1);
+    }
+
+
+    //只保证可见性，不能保证原子性
+    //happens-before规则中的volatile变量规则
+    private volatile int value = 0;
+    @Test
+    public void atomicTest() throws InterruptedException {
+        for (int x = 0; x < 50; x++) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    addValue();
+                    try {
+                        Thread.sleep(300);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
+        }
+        Thread.sleep(1000);
+        System.out.println(value);
+    }
+
+    private void addValue() {
+        value++;
+    }
+
+    /**
+     * 原子更新基本操作类型
+     * 原子更新数组
+     * 原子更新引用类型
+     * 原子更新字段类
+     */
+    private AtomicInteger atomicInteger = new AtomicInteger(0);
+    private AtomicIntegerArray atomicIntegerArray=new AtomicIntegerArray(new int[1]);
+    private AtomicReference<Employee> atomicReference=new AtomicReference<>();
+    @Test
+    public void atomicUpdate(){
+        atomicInteger.addAndGet(10);
+        atomicIntegerArray.addAndGet(0,10);
+        //
+        class Tuser {
+            public volatile int age;
+            public volatile Integer source;
+        }
+        //更新引用类型中的字段
+        Tuser tuser = new Tuser();
+        tuser.source = 10;
+        System.out.println(tuser.source);
+        AtomicReferenceFieldUpdater updater = AtomicReferenceFieldUpdater
+                .newUpdater(Tuser.class, Integer.class, "source");
+        updater.set(tuser, new Integer(100));
+        System.out.println(tuser.source);
+        //原子更新字段类(对象里的字段不能是包装类型)
+        tuser.age=20;
+        AtomicIntegerFieldUpdater fieldUpdater=AtomicIntegerFieldUpdater.newUpdater(Tuser.class,"age");
+        fieldUpdater.incrementAndGet(tuser);
+        System.out.println(tuser.age);
+    }
+
+    /**
+     * 实现一个线程安全的队列有两种方式：一种是使用阻塞算法，另一种则是使用非阻塞算法
+     * 阻塞算法一般是用所机制来实现
+     * 非阻塞算法则是使用循环CAS的方式来实现
+     *
+     *
+     */
+    @Test
+    public void ConcurrentLinkedQueueTest(){
+        ConcurrentLinkedQueue linkedQueue=new ConcurrentLinkedQueue();
     }
 }
