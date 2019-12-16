@@ -159,6 +159,7 @@ public class ThreadSafeCollections {
      */
     @Test
     public void ConcurrentLinkedQueueTest(){
+        //循环cas实现线程安全
         ConcurrentLinkedQueue linkedQueue=new ConcurrentLinkedQueue();
     }
 }

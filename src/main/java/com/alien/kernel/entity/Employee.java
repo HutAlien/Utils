@@ -13,7 +13,7 @@ import lombok.Data;
 public class Employee {
     private Integer id;
     private String name;
-    private Integer age;
+    public  Integer age;
     private Double salary;
 
     public Employee() {
