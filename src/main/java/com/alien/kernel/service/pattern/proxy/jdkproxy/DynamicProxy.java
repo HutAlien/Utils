@@ -28,8 +28,8 @@ public class DynamicProxy implements InvocationHandler {
     /**
      * this表示实现InvocationHandler接口的类，里面的invoke方法是关联的处理逻辑
      *
-     *@param
-     *@return
+     * @param
+     * @return
      */
     @SuppressWarnings("unchecked")
     public <T> T getProxy() {

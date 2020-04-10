@@ -4,6 +4,7 @@ import com.google.common.collect.Maps;
 
 import java.sql.Timestamp;
 import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Map;
 
@@ -14,6 +15,7 @@ import java.util.Map;
  */
 public class NewDateUtils {
 
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
     private static Map<String, String> map;
 
     static {
@@ -213,9 +215,10 @@ public class NewDateUtils {
 
 
     public static void main(String[] args) {
-        LocalTime localTime = LocalTime.now();
-        LocalTime time = LocalTime.of(1, 0, 0);
-        System.out.println(localTime.isAfter(time));
+        LocalDateTime date = LocalDateTime.parse("2019-12-30 16:31:32.170", formatter);
+        System.out.println(date);
+        System.out.println(LocalDateTime.now().format(formatter));
+
     }
 
 }

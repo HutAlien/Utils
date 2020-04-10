@@ -66,8 +66,8 @@ public class Prototype implements Cloneable, Serializable {
         prototype.setEmployee(new Employee());
         System.out.println(prototype);
         Prototype p = (Prototype) prototype.clone();
-        System.out.println(p.equals(prototype));
-        //
+        Object object = p.deepClone();
+        System.out.println(object);
 
     }
 

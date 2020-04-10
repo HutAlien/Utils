@@ -13,7 +13,7 @@ import java.util.Date;
  * @Date: 2018/11/27 12:41
  * @Description: 定时任务相关
  */
-@Component
+//@Component
 public class ScheduleTask implements SchedulingConfigurer {
     private int count = 0;
 
@@ -39,14 +39,14 @@ public class ScheduleTask implements SchedulingConfigurer {
     public void configureTasks(ScheduledTaskRegistrar registrar) {
 
         //添加基于cron触发的指定任务
-        registrar.addCronTask(()->{
+        registrar.addCronTask(() -> {
             System.out.println(LocalDateTime.now());
-        },"*/6 * * * * ?");
+        }, "*/6 * * * * ?");
 
         //添加固定速率任务
-        registrar.addFixedRateTask(()->{
+        registrar.addFixedRateTask(() -> {
             System.out.println(LocalDateTime.now());
-        },6000);
+        }, 6000);
 
     }
 }

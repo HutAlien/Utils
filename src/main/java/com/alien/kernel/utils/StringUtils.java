@@ -69,8 +69,11 @@ public class StringUtils {
     }
 
     public static void main(String[] args) {
-        int i = 100_00;
+        int i = 100_00;//语法糖
         System.out.println(i);
+        StringBuffer sb = new StringBuffer("dsdsds");
+
+        System.out.println(sb.toString());
     }
 
 }

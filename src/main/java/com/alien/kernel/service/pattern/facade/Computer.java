@@ -12,12 +12,12 @@ public class Computer {
     private Disk disk;
 
     public Computer() {
-        cpu=new Cpu();
-        memory=new Memory();
-        disk=new Disk();
+        cpu = new Cpu();
+        memory = new Memory();
+        disk = new Disk();
     }
 
-    public void startUp(){
+    public void startUp() {
         System.out.println("computer start");
         cpu.startUp();
         memory.startUp();
@@ -25,7 +25,7 @@ public class Computer {
         System.out.println("computer start finish");
     }
 
-    public void shutdown(){
+    public void shutdown() {
         System.out.println("computer close");
         cpu.shutdown();
         memory.shutdown();
@@ -34,7 +34,7 @@ public class Computer {
     }
 
     public static void main(String[] args) {
-        Computer computer=new Computer();
+        Computer computer = new Computer();
         computer.startUp();
         computer.shutdown();
     }

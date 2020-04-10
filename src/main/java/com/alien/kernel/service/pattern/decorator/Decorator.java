@@ -21,8 +21,8 @@ public class Decorator implements ISource {
     }
 
     public static void main(String[] args) {
-        ISource source=new SourceImpl();
-        ISource decorator=new Decorator(source);
+        ISource source = new SourceImpl();
+        ISource decorator = new Decorator(source);
         decorator.sourceMethod();
     }
 }

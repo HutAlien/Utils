@@ -15,4 +15,5 @@ public enum AjaxCodeEnum {
     AjaxCodeEnum(Integer code, String message) {
         this.code = code;
         this.message = message;
-    }}
+    }
+}

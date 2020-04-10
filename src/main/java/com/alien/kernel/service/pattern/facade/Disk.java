@@ -7,11 +7,11 @@ package com.alien.kernel.service.pattern.facade;
  */
 public class Disk {
 
-    public void startUp(){
+    public void startUp() {
         System.out.println("disk startUp...........");
     }
 
-    public void shutdown(){
+    public void shutdown() {
         System.out.println("disk shutdown............");
     }
 }

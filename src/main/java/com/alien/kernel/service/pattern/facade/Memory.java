@@ -7,11 +7,11 @@ package com.alien.kernel.service.pattern.facade;
  */
 public class Memory {
 
-    public void startUp(){
+    public void startUp() {
         System.out.println("memory startUp..........");
     }
 
-    public void shutdown(){
+    public void shutdown() {
         System.out.println("memory shutdown.............");
     }
 }

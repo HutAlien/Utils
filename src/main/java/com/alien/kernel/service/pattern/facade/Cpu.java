@@ -7,11 +7,11 @@ package com.alien.kernel.service.pattern.facade;
  */
 public class Cpu {
 
-    public void startUp(){
+    public void startUp() {
         System.out.println("cpu start.......");
     }
 
-    public void shutdown(){
+    public void shutdown() {
         System.out.println("cpu shutdown.......");
     }
 }

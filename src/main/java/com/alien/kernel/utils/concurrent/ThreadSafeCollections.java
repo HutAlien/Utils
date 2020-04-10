@@ -75,15 +75,11 @@ public class ThreadSafeCollections {
     /**
      * hashMap():
      * 扩容这个过程涉及到 rehash、复制数据等操作，所以非常消耗性能。因此最好能指定容量，以减少扩容带来的性能消耗
-     *
+     * <p>
      * concurrentHashMap():
      * 不像hashTable一样效率低下(因为所有访问hashTable的线程读必须竞争同一把锁)
      * concurrentHashMap使用的是锁分段技术，将数据分成一段一段地存放，然后给每段数据加上锁，这样当一个线程访问其中一段数据的时候，
      * 其他段的数据也可以被其他线程访问到。
-     *
-     *
-     *
-     *
      */
     @Test
     public void concurrentHashMapTest() {
@@ -94,6 +90,7 @@ public class ThreadSafeCollections {
     //只保证可见性，不能保证原子性
     //happens-before规则中的volatile变量规则
     private volatile int value = 0;
+
     @Test
     public void atomicTest() throws InterruptedException {
         for (int x = 0; x < 50; x++) {
@@ -124,12 +121,13 @@ public class ThreadSafeCollections {
      * 原子更新字段类
      */
     private AtomicInteger atomicInteger = new AtomicInteger(0);
-    private AtomicIntegerArray atomicIntegerArray=new AtomicIntegerArray(new int[1]);
-    private AtomicReference<Employee> atomicReference=new AtomicReference<>();
+    private AtomicIntegerArray atomicIntegerArray = new AtomicIntegerArray(new int[1]);
+    private AtomicReference<Employee> atomicReference = new AtomicReference<>();
+
     @Test
-    public void atomicUpdate(){
+    public void atomicUpdate() {
         atomicInteger.addAndGet(10);
-        atomicIntegerArray.addAndGet(0,10);
+        atomicIntegerArray.addAndGet(0, 10);
         //
         class Tuser {
             public volatile int age;
@@ -144,22 +142,20 @@ public class ThreadSafeCollections {
         updater.set(tuser, new Integer(100));
         System.out.println(tuser.source);
         //原子更新字段类(对象里的字段不能是包装类型)
-        tuser.age=20;
-        AtomicIntegerFieldUpdater fieldUpdater=AtomicIntegerFieldUpdater.newUpdater(Tuser.class,"age");
+        tuser.age = 20;
+        AtomicIntegerFieldUpdater fieldUpdater = AtomicIntegerFieldUpdater.newUpdater(Tuser.class, "age");
         fieldUpdater.incrementAndGet(tuser);
         System.out.println(tuser.age);
     }
 
     /**
      * 实现一个线程安全的队列有两种方式：一种是使用阻塞算法，另一种则是使用非阻塞算法
-     * 阻塞算法一般是用所机制来实现
+     * 阻塞算法一般是用锁机制来实现
      * 非阻塞算法则是使用循环CAS的方式来实现
-     *
-     *
      */
     @Test
-    public void ConcurrentLinkedQueueTest(){
+    public void ConcurrentLinkedQueueTest() {
         //循环cas实现线程安全
-        ConcurrentLinkedQueue linkedQueue=new ConcurrentLinkedQueue();
+        ConcurrentLinkedQueue linkedQueue = new ConcurrentLinkedQueue();
     }
 }

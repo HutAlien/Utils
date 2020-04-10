@@ -11,10 +11,10 @@ public class SourceProxy implements ISource {
 
     public SourceProxy() {
         super();
-        this.source=new SourceImpl();
+        this.source = new SourceImpl();
     }
 
-    private void before(){
+    private void before() {
         System.out.println("before-------------");
     }
 
@@ -25,12 +25,12 @@ public class SourceProxy implements ISource {
         after();
     }
 
-    private void after(){
+    private void after() {
         System.out.println("after---------------");
     }
 
     public static void main(String[] args) {
-        ISource source=new SourceProxy();
+        ISource source = new SourceProxy();
         source.sourceAble();
     }
 }

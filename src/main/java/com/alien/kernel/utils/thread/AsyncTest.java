@@ -18,15 +18,13 @@ public class AsyncTest {
     /**
      * 在使用默认的线程池调用异步方法的时候，会出现异常，但仍可以调用成功
      *
-     *
-     *
-     *@param
-     *@return
+     * @param
+     * @return
      */
     @Async
     public void printAsyncResult() throws InterruptedException {
         log.info("begin...................");
-         Thread.sleep(3000);
+        Thread.sleep(3000);
         log.info("end.....................");
     }
 }

@@ -87,7 +87,7 @@ public class MultiThreading implements Runnable {
 
     static {
         int poolSize = Runtime.getRuntime().availableProcessors() * 2;       //不合理设置会影响性能，甚至耗尽线程
-        BlockingQueue<Runnable> queue = new ArrayBlockingQueue<>(512,true);//指定容量 避免使用无界队列导致内存溢出
+        BlockingQueue<Runnable> queue = new ArrayBlockingQueue<>(512, true);//指定容量 避免使用无界队列导致内存溢出
         RejectedExecutionHandler policy = new ThreadPoolExecutor.DiscardPolicy();//拒绝策略 直接忽略
         myexecutorService = new ThreadPoolExecutor(poolSize, poolSize, 0, TimeUnit.SECONDS, queue, policy);
     }
