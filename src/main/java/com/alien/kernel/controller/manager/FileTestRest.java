@@ -177,6 +177,8 @@ public class FileTestRest {
     /**
      * 把文件从一个地方写到另一个地方
      *
+     * file.transferTo()
+     *
      * @param
      * @return
      */
@@ -314,6 +316,9 @@ public class FileTestRest {
 
     public static void main(String[] args) throws IOException {
         //decompression("E:\\test\\学生照片.zip");
-        compressZipFile("E:\\test");
+        //compressZipFile("E:\\test");
+        String s=null;
+        assert s==null:"1";
+        System.out.println("断言通过");
     }
 }

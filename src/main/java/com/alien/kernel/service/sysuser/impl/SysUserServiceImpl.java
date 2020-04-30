@@ -32,6 +32,17 @@ public class SysUserServiceImpl implements ISysUserService {
     @Autowired
     Dao dao;
 
+    /**
+     *
+     * @Cacheable ，用来声明方法是可缓存，将结果存储到缓存中以便后续使用相同参数调用时不需执行实际的方法，直接从缓存中取值。
+     *
+     * @CachePut，使用 @CachePut 标注的方法在执行前，不会去检查缓存中是否存在之前执行过的结果，而是每次都会执行该方法，
+     * 并将执行结果以键值对的形式存入指定的缓存中。
+     *
+     * @CacheEvict，是用来标注在需要清除缓存元素的方法或类上的，当标记在一个类上时表示其中所有的方法的执行都会触发缓存的清除操作。
+     *
+     */
+
     @Override
     //  @Cacheable(cacheNames = "userList")
     public AjaxResult findAllUser() {
