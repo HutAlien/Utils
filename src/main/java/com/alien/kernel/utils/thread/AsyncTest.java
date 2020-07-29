@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
+import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.concurrent.locks.Lock;
 
 /**
@@ -26,5 +27,10 @@ public class AsyncTest {
         log.info("begin...................");
         Thread.sleep(3000);
         log.info("end.....................");
+    }
+
+    public static void main(String[] args) {
+        //跳表
+        ConcurrentSkipListMap  concurrentSkipListMap=new ConcurrentSkipListMap();
     }
 }

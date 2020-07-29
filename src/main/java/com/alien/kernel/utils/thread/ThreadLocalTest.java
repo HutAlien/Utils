@@ -35,7 +35,10 @@ public class ThreadLocalTest {
      * remove()方法移除当前前程的副本变量值。
      * <p>
      * 每个ThreadLocal只能保存一个变量副本，如果想要上线一个线程能够保存多个副本以上，就需要创建多个ThreadLocal。
-     * ThreadLocal内部的ThreadLocalMap键为弱引用，弱引用的生命周期只能存活到下次GC前，会有内存泄漏的风险。
+     * ThreadLocalMap中，也是用Entry(静态内部类)来保存K-V结构数据的。Entry继承自WeakReference（弱引用），
+     * 但只有Key是弱引用类型的，Value并非弱引用。
+     *
+     * ThreadLocal内部的ThreadLocalMap键为弱引用(https://www.cnblogs.com/zjj1996/p/9140385.html)，弱引用的生命周期只能存活到下次GC前，会有内存泄漏的风险。
      * 所以，每次使用完ThreadLocal，都调用它的remove()方法，清除数据防止泄露。
      * <p>
      * 内存泄漏（Memory Leak）是指程序中己动态分配的堆内存由于某种原因程序未释放或无法释放，造成系统内存的浪费，
@@ -88,6 +91,9 @@ public class ThreadLocalTest {
      *  一.可以在使用的时候创建对象，避免多线程共享
      *  二.同步SimpleDateFormat对象（给对象加锁）
      *  三.使用ThreadLocal
+     *
+     *
+     *  强引用，弱引用，软引用，虚引用（https://www.cnblogs.com/fengbs/p/7019687.html）
      *
      */
 

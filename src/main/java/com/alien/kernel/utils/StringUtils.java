@@ -1,9 +1,9 @@
 package com.alien.kernel.utils;
 
+import com.google.common.hash.BloomFilter;
+import com.google.common.hash.Funnels;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.HashSet;
-import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -74,6 +74,11 @@ public class StringUtils {
         StringBuffer sb = new StringBuffer("dsdsds");
 
         System.out.println(sb.toString());
+        //Guava的布隆过滤器
+        BloomFilter<Integer> filter=BloomFilter.create(Funnels.integerFunnel(),100,0.01);
+        System.out.println(filter.mightContain(1));
+        filter.put(1);
+        System.out.println(filter.mightContain(1));
     }
 
 }
