@@ -163,6 +163,18 @@ public class ListTest {
 
     }
 
+    /**
+     * fast-fail：
+     *
+     * 在对list进行遍历的时候，使用迭代器(包括增强的for循环)进行遍历的时候，调用集合的add modify remove等方法时
+     * 会导致modCount 变量被修改，最终抛出ConcurrentModificationException
+     * 这里可以使用迭代器给我们提供的方法(如remove() 以及listIterator提供的add()方法和set()方法)对集合进行操作
+     *
+     * 或者使用普通for循环进行遍历
+     *@
+     *@
+     */
+
     public static void main(String[] args) {
         //
         List<Integer> list1 = Lists.newArrayList(1, 2, 3, 4);
