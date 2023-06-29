@@ -5,10 +5,10 @@
         <groupId>com.example.alien</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-
     <modules>
         <module>rocketmq</module>
     </modules>
+    <packaging>pom</packaging>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>mq</artifactId>
     <name>demo-mq</name>

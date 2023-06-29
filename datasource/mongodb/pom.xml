@@ -12,6 +12,7 @@
     <artifactId>mongodb</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>mongodb</name>
+    <packaging>jar</packaging>
     <description>mongodb</description>
     <properties>
         <java.version>8</java.version>

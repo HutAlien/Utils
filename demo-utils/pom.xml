@@ -6,8 +6,9 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
+    <packaging>jar</packaging>
     <artifactId>demo-utils</artifactId>
-    <name>Archetype - demo-utils</name>
+    <name>demo-utils</name>
     <url>http://maven.apache.org</url>
 
     <properties>
