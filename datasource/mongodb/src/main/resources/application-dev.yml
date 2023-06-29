@@ -1,0 +1,8 @@
+server:
+  port: 8081
+spring:
+  data:
+    mongodb:
+      field-naming-strategy: org.springframework.data.mapping.model.SnakeCaseFieldNamingStrategy
+      #uri:mongodb://用户名：密码@主机地址：端口号/集合
+      uri: mongodb://root:123456@localhost:27017/utils

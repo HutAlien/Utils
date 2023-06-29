@@ -1,0 +1,11 @@
+分布式任务调度框架
+1.quartz
+基于数据库实现分布式调度，节点之前不存在相互通信，独立的Quartz任务应用。
+核心部件：Scheduler，Trigger，JobDetail
+
+
+2.xxl-job
+
+
+3.自写调度
+1)基于Dubbo实现

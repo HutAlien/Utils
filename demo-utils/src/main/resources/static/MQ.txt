@@ -1,0 +1,6 @@
+rocketMQ：使用的传输模型为发布-订阅模型
+
+领域模型：Topic,MessageQueue,Message,Producer,ConsumerGroup,Consumer,Subscription
+
+
+

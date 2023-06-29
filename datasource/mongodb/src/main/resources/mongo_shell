@@ -1,0 +1,35 @@
+//创建超级管理员用户
+use admin
+db.createUser({
+    user："root",
+    pwd："123456",
+    // 角色 root 是超级管理用户权限
+    roles: ["root"]
+})
+
+//创建普通用户
+use utils
+db.createUser({
+    user:"root",
+    pwd:"123456",
+    roles:[
+        {
+            role:"dbOwner", // 角色权限：dbOwner是具有该数据库的全部权限
+            db:"utils"     // 要管理的数据库
+        },
+        //{role:"dbOwner",db:"mydbs2"}  // 如果要管理多个数据库，可以在添加多个
+    ]
+})
+
+# 查看当前数据库中的所有用户
+show users
+# 登录认证
+db.auth("admin", "123456")
+# 修改用户密码
+db.changeUserPassword("root","root")
+或
+db.updateUser( "username", {
+    pwd: "abc666"
+})
+# 删除用户
+db.dropUser("username")  // username 是要删除的用户名

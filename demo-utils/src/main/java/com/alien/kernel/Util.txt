@@ -1,0 +1,18 @@
+GIT常用命令：
+git pull --rebase origin master
+回退commit：git reset --mixed HEAD~1
+在本地添加tag标注：git tag  -a [tag名称]  -m"tag简单描述"
+本地单个tag推送：git push origin [tag名称]
+强推：git push origin --force
+
+
+
+
+generation 产生、一代
+captcha 验证码
+stable：
+adj.(化学状态或原子状态)稳定的; 稳固的; 牢固的; 稳重的; 沉稳的; 持重的;
+n.马厩; 马房; (养马作特定用途的)养马场; 一批人; 统称某人拥有(或训练的)赛马;
+vt.使(马)入厩; 把(马)拴在马厩;
+criteria 标准、准则
+maintained 保持、被保持的
