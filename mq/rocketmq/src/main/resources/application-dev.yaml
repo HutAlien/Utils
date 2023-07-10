@@ -7,18 +7,82 @@ spring:
     # Spring Cloud Stream 配置项，对应 BindingServiceProperties 类
     stream:
       bindings:
+        #生产者(原生的生产者对应Source.class)
+        output:
+          # 目的地。这里使用 RocketMQ Topic
+          destination: itemInfo-change-topic
+          # 内容格式。这里使用 JSON
+          content-type: application/json
+          # 生产者分组
+          group: dev-out
+        #消费者
+        input:
+          destination: itemInfo-change-topic
+          content-type: application/json
+          group: dev-input
+          consumer:
+            #自动开启消费
+            autoStartup: false
+        #自定义生产者
         itemInfoChange-output:
-          destination: ItemInfo-change-topic # 目的地。这里使用 RocketMQ Topic
-          content-type: application/json # 内容格式。这里使用 JSON
+          destination: itemInfo-change-topic
+          content-type: application/json
+        #自定义消费者
+        itemInfoChange-input:
+          destination: itemInfo-change-topic
+          content-type: application/json
+          group: dev-consumer-1
       rocketmq:
         # RocketMQ Binder 配置项，对应 RocketMQBinderConfigurationProperties 类
         binder:
-          name-server: 127.0.0.1:9876 # RocketMQ Namesrv 地址
-        # RocketMQ 自定义 Binding 配置项，对应 RocketMQBindingProperties Map
+          # RocketMQ Namesrv 地址
+          name-server: 127.0.0.1:9876
+#          # 阿里云账号 AccessKey
+#          access-key:
+#          #阿里云账号 SecretKey
+#          secret-key:
+#          #是否为 Producer 和 Consumer 开启消息轨迹功能Default: true
+#          enable-msg-trace:
+#          #消息轨迹开启后存储的 topic 名称。Default: RMQ_SYS_TRACE_TOPIC.
+#          customized-trace-topic:
         bindings:
+          #增强stream的bindings
           itemInfoChange-output:
             # RocketMQ Producer 配置项，对应 RocketMQProducerProperties 类
             producer:
-              group: test # 生产者分组
-              sync: true # 是否同步发送消息，默认为 false 异步。
-
+              enable: true
+              #消息发送的最大字节数；默认值: 8249344.
+              maxMessageSize: 8249344
+              #是否发送事务消息。(另外不管是事务消息，顺序消息还是延时消息，发送的消息的类型必须和主题的类型一致！)
+              transactional: false
+              #是否在 Vip Channel 上发送消息
+              vipChannelEnabled: true
+              #发送消息的超时时间(毫秒)
+              sendMessageTimeout: 3000
+              #消息体压缩阀值(当消息体超过 4k 的时候会被压缩)
+              compressMessageBodyThreshold: 4096
+              #在同步发送消息的模式下，消息发送失败的重试次数
+              retryTimesWhenSendFailed: 2
+              #在异步发送消息的模式下，消息发送失败的重试次数
+              retryTimesWhenSendAsyncFailed: 2
+              #消息发送失败的情况下是否重试其它的 broker
+              retryNextServer: false
+              #生产者分组,Apache RocketMQ 服务端5.x版本开始，生产者是匿名的，无需管理生产者分组（ProducerGroup）；
+              #对于历史版本服务端3.x和4.x版本，已经使用的生产者分组可以废弃无需再设置，且不会对当前业务产生影响。
+              group: dev-producer-1
+              # 是否同步发送消息，默认为 false 异步。
+              sync: false
+          itemInfoChange-input:
+            consumer:
+              enable: true
+              #多个 tag 以 || 分割
+              tags: item-tags
+              sql:
+              #Consumer是否是广播消费模式。如果想让所有的订阅者都能接收到消息，可以使用广播模式
+              broadcasting: false
+              #是否顺序消费
+              orderly: false
+              #异步消费消息模式下消费失败重试策略 -1,不重复，直接放入死信队列 0,broker 控制重试频率 >0,client 控制重试频率 越大则频率越低
+              delayLevelWhenNextConsume: 0
+              #同步消费消息模式下消费失败后再次消费的时间间隔
+              suspendCurrentQueueTimeMillis: 1000

@@ -4,7 +4,7 @@ import org.springframework.cloud.stream.annotation.Output;
 import org.springframework.messaging.MessageChannel;
 
 /**
- * @Description:
+ * @Description: 发送消息个性化接口
  * @Author: FengYunJun
  * @Date: 2023/6/28 11:28
  * @version:

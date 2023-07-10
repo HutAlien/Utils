@@ -1,0 +1,3 @@
+在MQ文件夹\bin下执行cmd命令,成功后弹窗请勿关闭
+start mqnamesrv.cmd
+start mqbroker.cmd -n 127.0.0.1:9876 autoCreateTopicEnable=true
