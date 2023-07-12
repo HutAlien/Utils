@@ -1,0 +1,132 @@
+package ${package.Controller};
+
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.example.common.base.BaseResult;
+import ${package.Entity}.${entity};
+import ${package.Service}.${table.serviceName};
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Arrays;
+#if(${restControllerStyle})
+#else
+import org.springframework.stereotype.Controller;
+#end
+#if(${superControllerClassPackage})
+import ${superControllerClassPackage};
+#end
+
+/**
+ * <p>
+ * $!{table.comment} 前端控制器
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+@Api("${table.comment} 服务")
+#if(${restControllerStyle})
+@RestController
+#else
+@Controller
+#end
+@RequiredArgsConstructor
+@RequestMapping("#if(${package.ModuleName})/${package.ModuleName}#end/#if(${controllerMappingHyphenStyle})${controllerMappingHyphen}#else${table.entityPath}#end")
+#if(${kotlin})
+class ${table.controllerName}#if(${superControllerClass}) : ${superControllerClass}()#end
+
+#else
+#if(${superControllerClass})
+public class ${table.controllerName} extends ${superControllerClass} {
+#else
+public class ${table.controllerName} {
+#end
+    #set($entityName=${entity})
+    #set($entityName=$entityName.substring(0,1).toLowerCase()+$entityName.substring(1,$entityName.length()))
+    #set($apiName=$entityName+"Service")
+    #set($resourceNames=$entityName+"s")
+    #set($insertMethod=$apiName+".save("+$entityName+")")
+    #set($updateMethod=$apiName+".updateById("+$entityName+")")
+    #set($removeMethod=$apiName+".removeById(id)")
+    #set($getOneMethod=$apiName+".getById(id)")
+    #set($getPageMethod=$apiName+".selectPage(new Page<>(pageNo, pageSize), new EntityWrapper<>("+$entityName+"));")
+
+    /**
+     * 构造注入
+     */
+    private final ${table.serviceName} $apiName;
+
+    /**
+     * 新增
+     */
+    @ApiOperation("新增")
+    @PostMapping
+    public BaseResult<Boolean> add(@RequestBody ${entity} $entityName) {
+        return BaseResult.status($insertMethod);
+    }
+
+    /**
+     * 编辑
+     */
+    @ApiOperation("编辑")
+    @PutMapping
+    public BaseResult<Boolean> updateById(@RequestBody ${entity} $entityName) {
+        return BaseResult.status($updateMethod);
+    }
+
+    /**
+	 * 删除
+	 */
+    @DeleteMapping
+    @ApiOperation(value = "逻辑删除", notes = "传入id")
+    public BaseResult<Boolean> remove(@ApiParam(value = "id", required = true) @RequestParam String id){
+        ${entity} $entityName = $getOneMethod;
+        if($entityName == null){
+            return BaseResult.fail("无法删除，未找到对应的数据");
+        }
+        return BaseResult.status($removeMethod);
+    }
+
+    /**
+     * 批量删除
+     */
+    @DeleteMapping("/removeBatch")
+    @ApiOperation(value = "批量逻辑删除", notes = "传入ids")
+    public BaseResult<Boolean> removeBatch(@ApiParam(value = "ids", required = true) @RequestParam String ids){
+        if(ids == null || "".equals(ids.trim())) {
+            return BaseResult.fail("传递的参数无法识别");
+        }
+        return BaseResult.status(${apiName}.removeByIds(Arrays.asList(ids.split(","))));
+    }
+
+    /**
+     * 通过id查询
+     */
+    @ApiOperation("通过id查询")
+    @GetMapping
+    public BaseResult<${entity}> queryById(@ApiParam(value = "id", required = true) @RequestParam String id) {
+        return BaseResult.success(${apiName}.getById(id));
+    }
+
+    /**
+     * 分页查询
+     */
+    @ApiOperation("分页查询")
+    @GetMapping(value = "/queryPageList")
+    public BaseResult<IPage<${entity}>> queryPageList(${entity} $entityName,
+                                                       @RequestParam(name="pageNum", defaultValue="1") Long pageNum,
+                                                       @RequestParam(name="pageSize", defaultValue="10") Long pageSize){
+        Wrapper<${entity}> queryWrapper = new QueryWrapper<>($entityName);
+        Page<${entity}> page = new Page<>(pageNum, pageSize);
+        IPage<${entity}> pageList = ${apiName}.page(page, queryWrapper);
+        return BaseResult.success(pageList);
+    }
+
+}
+#end

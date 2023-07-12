@@ -10,6 +10,7 @@
         <module>datasource</module>
         <module>mq</module>
         <module>demo-utils</module>
+        <module>common</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -22,6 +23,14 @@
         <version>2.3.12.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
 
 
 </project>
