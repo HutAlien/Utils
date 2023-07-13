@@ -57,7 +57,7 @@ public class BaseResult<T> implements Serializable {
     }
 
     public static <T> BaseResult<T> success(T data) {
-        return new BaseResult<>(BaseResultEnum.SUCCESS.code,BaseResultEnum.SUCCESS.getMessage(),data);
+        return new BaseResult<>(BaseResultCodeEnum.SUCCESS.code, BaseResultCodeEnum.SUCCESS.getMessage(),data);
     }
 
     public static <T> BaseResult<T> status(boolean flag) {
@@ -65,10 +65,10 @@ public class BaseResult<T> implements Serializable {
     }
 
     public static <T> BaseResult<T> fail(T data) {
-        return new BaseResult<>(BaseResultEnum.FAILURE.code,BaseResultEnum.FAILURE.getMessage(),data);
+        return new BaseResult<>(BaseResultCodeEnum.FAILURE.code, BaseResultCodeEnum.FAILURE.getMessage(),data);
     }
 
     public static <T> BaseResult<T> fail(String msg) {
-        return new BaseResult<>(BaseResultEnum.FAILURE.code,msg,null);
+        return new BaseResult<>(BaseResultCodeEnum.FAILURE.code,msg,null);
     }
 }

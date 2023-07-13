@@ -11,6 +11,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>mongodb</module>
+        <module>mysql</module>
     </modules>
     <artifactId>datasource</artifactId>
 

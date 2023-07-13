@@ -8,7 +8,7 @@ import java.io.Serializable;
  * @Date: 2023/7/11 17:22
  * @version:
  */
-public enum BaseResultEnum implements Serializable {
+public enum BaseResultCodeEnum implements Serializable {
     SUCCESS(200, "操作成功"),
     FAILURE(201, "业务异常"),
 
@@ -17,7 +17,7 @@ public enum BaseResultEnum implements Serializable {
     final int code;
     final String message;
 
-    BaseResultEnum(int code, String message) {
+    BaseResultCodeEnum(int code, String message) {
         this.code = code;
         this.message = message;
     }

@@ -16,3 +16,6 @@ n.马厩; 马房; (养马作特定用途的)养马场; 一批人; 统称某人�
 vt.使(马)入厩; 把(马)拴在马厩;
 criteria 标准、准则
 maintained 保持、被保持的
+navigation 导航，领航，航行
+avatar 化身，头像，图标
+maintainer 维护人员
