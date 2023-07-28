@@ -11,6 +11,7 @@
         <module>mq</module>
         <module>demo-utils</module>
         <module>common</module>
+        <module>microservices</module>
     </modules>
     <packaging>pom</packaging>
 

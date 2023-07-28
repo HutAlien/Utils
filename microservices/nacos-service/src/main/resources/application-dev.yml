@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: utils-nacos
+  cloud:
+    inetutils:
+      ignored-interfaces: xx
+    nacos:
+      discovery:
+        username: xx
+        password: xx
+        server-addr: localhost:8080
+        namespace: xxx
