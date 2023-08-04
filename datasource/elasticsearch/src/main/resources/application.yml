@@ -1,0 +1,13 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: utils-datasource-elasticsearch
+  # servlet配置
+  servlet:
+    multipart:
+      # 最大文件限制为6MB
+      max-file-size: 6MB
+      # 请求数据最大限制为30MB
+      max-request-size: 30MB
+

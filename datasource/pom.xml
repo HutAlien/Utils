@@ -12,6 +12,7 @@
     <modules>
         <module>mongodb</module>
         <module>mysql</module>
+        <module>elasticsearch</module>
     </modules>
     <artifactId>datasource</artifactId>
 
