@@ -15,6 +15,9 @@
     </modules>
     <packaging>pom</packaging>
 
+    <properties>
+        <hutool.version>5.8.16</hutool.version>
+    </properties>
     <name>utils</name>
     <description>Demo project for Spring Boot</description>
 
@@ -30,6 +33,11 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool.version}</version>
         </dependency>
     </dependencies>
 

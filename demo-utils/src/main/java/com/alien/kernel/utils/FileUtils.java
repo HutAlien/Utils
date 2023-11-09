@@ -1,15 +1,22 @@
 package com.alien.kernel.utils;
 
 import com.alien.kernel.dto.FileModel;
+import io.swagger.annotations.ApiOperation;
 import org.apache.commons.imaging.ImageInfo;
 import org.apache.commons.imaging.ImageReadException;
 import org.apache.commons.imaging.Imaging;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.util.Assert;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,10 +29,10 @@ import java.util.zip.ZipOutputStream;
  * @Date: 2019/5/24 16:41
  * @Description:
  */
-public class fileUtils {
+public class FileUtils {
 
 
-    private static Logger logger = LoggerFactory.getLogger(fileUtils.class);
+    private static Logger logger = LoggerFactory.getLogger(FileUtils.class);
 
     /**
      * 解压zip
@@ -116,5 +123,31 @@ public class fileUtils {
         System.out.println(info.getWidth());
     }
 
+    /**
+     * web文件下载
+     *
+     * @param response
+     * @return
+     */
+    @GetMapping("/goods/template")
+    public void goodTemplate(HttpServletResponse response) throws IOException {
+        response.setCharacterEncoding("UTF-8");
+        //下载excel
+        response.setHeader("content-Type", "application/vnd.ms-excel");
+        //下载word
+        //response.setContentType("application/msword");
+        response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode("商品导入模板" + "." + "xlsx", "UTF-8"));
+        Resource resource = new ClassPathResource("templates/Index.html");
+        InputStream inputStream = resource.getInputStream();
+        ServletOutputStream servletOutputStream = response.getOutputStream();
+        byte[] buffer = new byte[2048];
+        int len;
+        while ((len = inputStream.read(buffer)) != -1) {
+            servletOutputStream.write(buffer, 0, len);
+        }
+        servletOutputStream.flush();
+        inputStream.close();
+        servletOutputStream.close();
+    }
 
 }

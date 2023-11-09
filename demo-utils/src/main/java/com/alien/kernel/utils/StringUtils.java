@@ -1,5 +1,6 @@
 package com.alien.kernel.utils;
 
+import cn.hutool.core.text.CharSequenceUtil;
 import com.google.common.hash.BloomFilter;
 import com.google.common.hash.Funnels;
 import lombok.extern.slf4j.Slf4j;
@@ -93,6 +94,19 @@ public class StringUtils {
             ip = request.getRemoteAddr();
         }
         return ip;
+    }
+
+    /**
+     * 转译 \ % _
+     * 禁止与escape 同时使用
+     */
+    public static String convertToSqlSafeValue(String str) {
+        if (CharSequenceUtil.isEmpty(str)) {
+            return str;
+        }
+        return str.replace("\\", "\\\\")
+                .replace("%", "\\%")
+                .replace("_", "\\_");
     }
 
     public static void main(String[] args) {
